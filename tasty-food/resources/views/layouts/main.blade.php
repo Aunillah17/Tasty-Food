@@ -60,7 +60,7 @@
         }
         
         footer a { 
-            color: #bbbbbb; 
+            color: #ffffff; 
             text-decoration: none; 
             font-size: 14px; 
             transition: color 0.3s;
