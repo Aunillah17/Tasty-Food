@@ -1,194 +1,182 @@
 @extends('layouts.main')
 
-@section('title', 'Kontak')
+@section('title', 'Kontak Kami')
 
 @section('content')
 <style>
-    /* ==========================================================================
-       1. BANNER UTAMA KONTAK
-       ========================================================================== */
-    .banner-contact {
+    /* Styling Banner Atas (Header) - Seragam dengan halaman lain */
+    .contact-header-banner {
+        background: url('{{ asset('assets/images/Group 70.png') }}') center/cover no-repeat;
+        height: 400px;
         position: relative;
-        background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url("{{ asset('assets/images/img-4.png') }}") center/cover no-repeat;
-        height: 280px;
+        margin-top: -110px; /* Diangkat agar pas di bawah navbar transparan */
         display: flex;
         align-items: center;
-        margin-top: -105px;
-        padding-top: 100px;
     }
-    .banner-contact h1 {
-        font-weight: 900;
-        font-size: 2.5rem;
-        letter-spacing: 2px;
-        color: #ffffff;
+    .contact-header-banner::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: rgba(0, 0, 0, 0.4);
+        z-index: 1;
+    }
+    .contact-header-banner .container {
+        position: relative;
+        z-index: 2;
     }
 
-    /* ==========================================================================
-       2. FORM SECTION
-       ========================================================================== */
-    .contact-form-section {
-        padding: 80px 0;
-    }
-    .contact-form-section h2 {
-        font-weight: 800;
-        font-size: 1.6rem;
-        color: #000000;
-        letter-spacing: 0.5px;
-    }
-    .custom-input {
-        border: 1px solid #777777;
-        border-radius: 8px;
-        padding: 12px 15px;
+    /* Kustomisasi Input Form Minimalis */
+    .form-custom-input {
+        border: 1.5px solid #a1a1aa;
+        border-radius: 12px;
+        padding: 15px 20px;
         font-size: 14px;
-        background-color: transparent;
+        color: #333333;
     }
-    .custom-input:focus {
+    .form-custom-input:focus {
         border-color: #000000;
         box-shadow: none;
     }
-    .btn-send {
+    .form-custom-textarea {
+        height: 100%;
+        min-height: 220px;
+        resize: none;
+    }
+
+    /* Tombol Kirim Lebar Penuh */
+    .btn-submit-custom {
         background-color: #000000;
         color: #ffffff;
-        font-weight: 700;
-        font-size: 13px;
-        letter-spacing: 2px;
-        padding: 14px;
         border: none;
-        border-radius: 8px;
-        transition: background-color 0.3s;
+        border-radius: 10px;
+        width: 100%;
+        padding: 16px;
+        font-weight: 700;
+        text-transform: uppercase;
+        font-size: 14px;
+        letter-spacing: 1px;
+        transition: all 0.3s ease;
     }
-    .btn-send:hover {
-        background-color: #333333;
-        color: #ffffff;
-    }
-
-    /* ==========================================================================
-       3. INFO CARDS ICON BULAT
-       ========================================================================== */
-    .contact-info-section {
-        padding-bottom: 80px;
-    }
-    .info-circle-icon {
-        width: 70px;
-        height: 70px;
-        background-color: #000000;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin: 0 auto 20px auto;
+    .btn-submit-custom:hover {
+        background-color: #fbbf24;
+        color: #000000;
     }
 
-    /* ==========================================================================
-       4. MAP SECTION (BACKGROUND GREY LIGHT PADDING)
-       ========================================================================== */
-    .map-container-wrapper {
-        background-color: #f9f9f9;
-        padding: 60px 0;
+    /* Info Kontak Row */
+    .info-icon-box {
+        width: 90px;
+        height: 90px;
+        object-fit: contain;
+        margin-bottom: 15px;
     }
-    .map-box {
+
+    /* Wrapper Peta dengan background abu-abu halus */
+    .map-bg-wrapper {
+        background-color: #f8f9fa;
         border-radius: 16px;
         overflow: hidden;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.03);
     }
-    .info-card-title {
-        font-weight: 800;
-        font-size: 15px;
-        color: #000000;
-        letter-spacing: 0.5px;
-    }
-    .info-card-text {
-        font-size: 13px;
-        color: #555555;
+    .map-iframe-container {
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.04);
     }
 </style>
 
-<!-- 1. BANNER ATAS -->
-<div class="banner-contact">
+<!-- ==========================================================================
+   1. HEADER BANNER (Latar Belakang Group 70.png)
+   ========================================================================== -->
+<section class="contact-header-banner mb-5">
     <div class="container">
-        <h1 class="text-uppercase mb-0">Kontak Kami</h1>
+        <h1 class="text-white text-uppercase fw-bold display-4 tracking-wide">Kontak Kami</h1>
     </div>
-</div>
+</section>
 
-<!-- 2. SECTION FORM KONTAK -->
-<div class="container contact-form-section">
-    <h2 class="text-uppercase mb-4">KONTAK KAMI</h2>
-    
-    <form action="#" method="POST">
-        @csrf
-        <div class="row g-4 mb-4">
-            <!-- Kolom Kiri: Input Stack -->
-            <div class="col-md-6 d-flex flex-column gap-3">
-                <input type="text" class="form-control custom-input" placeholder="Subject" required>
-                <input type="text" class="form-control custom-input" placeholder="Name" required>
-                <input type="email" class="form-control custom-input" placeholder="Email" required>
+<!-- ==========================================================================
+   2. FORMULIR HUBUNGI KAMI SECTION
+   ========================================================================== -->
+<section class="py-5">
+    <div class="container">
+        <h3 class="text-uppercase fw-bold text-dark mb-5" style="letter-spacing: 0.5px;">Kontak Kami</h3>
+        
+        <!-- Form Tag (Method POST siap pakai untuk Backend nanti) -->
+        <form action="#" method="POST">
+            @csrf
+            <div class="row g-4 mb-4">
+                <!-- Kolom Kiri: Subject, Name, Email -->
+                <div class="col-lg-6">
+                    <div class="d-flex flex-column gap-4">
+                        <input type="text" name="subject" class="form-control form-custom-input" placeholder="Subject" required>
+                        <input type="text" name="name" class="form-control form-custom-input" placeholder="Name" required>
+                        <input type="email" name="email" class="form-control form-custom-input" placeholder="Email" required>
+                    </div>
+                </div>
+                <!-- Kolom Kanan: Message / Pesan -->
+                <div class="col-lg-6">
+                    <textarea name="message" class="form-control form-custom-input form-custom-textarea" placeholder="Message" required></textarea>
+                </div>
             </div>
             
-            <!-- Kolom Kanan: Textarea Message -->
-            <div class="col-md-6">
-                <textarea class="form-control custom-input h-100" rows="5" placeholder="Message" style="resize: none;" required></textarea>
+            <!-- Tombol Kirim Lebar Penuh -->
+            <div class="row mb-5">
+                <div class="col-12">
+                    <button type="submit" class="btn btn-submit-custom">Kirim</button>
+                </div>
             </div>
-        </div>
-        
-        <!-- Tombol Kirim Lebar Penuh -->
-        <div class="row">
-            <div class="col-12">
-                <button type="submit" class="btn btn-send w-100 text-uppercase">Kirim</button>
-            </div>
-        </div>
-    </form>
-</div>
+        </form>
 
-<!-- 3. SECTION ICON BULAT INFO (MENGGUNAKAN ASET GAMBAR PERUSAHAAN) -->
-<div class="container contact-info-section text-center">
-    <div class="row g-4">
-        <!-- EMAIL -->
-        <div class="col-md-4">
-            <div class="info-circle-icon">
-                <!-- Sesuaikan nama file gambar ikon email dari perusahaan, contoh: icon-email.png atau email.svg -->
-                <img src="{{ asset('assets/images/icon-email.png') }}" alt="Email Icon" style="width: 30px; height: 30px; object-fit: contain;">
+        <!-- ==========================================================================
+           3. TIGA LOGO INFO KONTAK BERDERET (Menggunakan Aset Perusahaan)
+           ========================================================================== -->
+        <div class="row text-center g-4 my-5 pt-4">
+            <!-- Email Info -->
+            <div class="col-md-4">
+                <div class="d-flex flex-column align-items-center">
+                    <img src="{{ asset('assets/images/Group 66@2x.png') }}" alt="Email Icon" class="info-icon-box">
+                    <h6 class="fw-bold text-uppercase text-dark mb-2" style="letter-spacing: 0.5px;">Email</h6>
+                    <p class="text-muted small">tastyfood@gmail.com</p>
+                </div>
             </div>
-            <h5 class="info-card-title text-uppercase mb-2">EMAIL</h5>
-            <p class="info-card-text mb-0">tastyfood@gmail.com</p>
-        </div>
-        
-        <!-- PHONE -->
-        <div class="col-md-4">
-            <div class="info-circle-icon">
-                <!-- Sesuaikan nama file gambar ikon telepon dari perusahaan, contoh: icon-phone.png -->
-                <img src="{{ asset('assets/images/icon-phone.png') }}" alt="Phone Icon" style="width: 30px; height: 30px; object-fit: contain;">
+            <!-- Phone Info -->
+            <div class="col-md-4">
+                <div class="d-flex flex-column align-items-center">
+                    <img src="{{ asset('assets/images/Group 67@2x.png') }}" alt="Phone Icon" class="info-icon-box">
+                    <h6 class="fw-bold text-uppercase text-dark mb-2" style="letter-spacing: 0.5px;">Phone</h6>
+                    <p class="text-muted small">+62 812 3456 7890</p>
+                </div>
             </div>
-            <h5 class="info-card-title text-uppercase mb-2">PHONE</h5>
-            <p class="info-card-text mb-0">+62 812 3456 7890</p>
-        </div>
-        
-        <!-- LOCATION -->
-        <div class="col-md-4">
-            <div class="info-circle-icon">
-                <!-- Sesuaikan nama file gambar ikon lokasi dari perusahaan, contoh: icon-location.png -->
-                <img src="{{ asset('assets/images/icon-location.png') }}" alt="Location Icon" style="width: 30px; height: 30px; object-fit: contain;">
+            <!-- Location Info -->
+            <div class="col-md-4">
+                <div class="d-flex flex-column align-items-center">
+                    <img src="{{ asset('assets/images/Group 68@2x.png') }}" alt="Location Icon" class="info-icon-box">
+                    <h6 class="fw-bold text-uppercase text-dark mb-2" style="letter-spacing: 0.5px;">Location</h6>
+                    <p class="text-muted small">Kota Bandung, Jawa Barat</p>
+                </div>
             </div>
-            <h5 class="info-card-title text-uppercase mb-2">LOCATION</h5>
-            <p class="info-card-text mb-0">Kota Bandung, Jawa Barat</p>
         </div>
+
     </div>
-</div>
+</section>
 
-<!-- 4. SECTION GOOGLE MAPS -->
-<div class="map-container-wrapper">
+<!-- ==========================================================================
+   4. GOOGLE MAPS CYBERLABS (Besar di Dalam Wrapper Latar Abu Halus)
+   ========================================================================== -->
+<section class="py-5 mb-5">
     <div class="container">
-        <div class="map-box">
-            <!-- Menggunakan Embed iframe Google Maps area Bandung -->
-            <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m13!1m4!1m3!1m1!1s0x2e68e6398252177d%3A0xac4d43e9cd1a4a85!2sBandung%2C+Bandung+City%2C+West+Java!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e6398252177d%3A0xac4d43e9cd1a4a85!2sBandung%2C+Kota+Bandung%2C+Jawa+Barat!5e0!3m2!1sid!2sid!4v1700000000000!5m2!1sid!2sid" 
-                width="100%" 
-                height="400" 
-                style="border:0; display:block;" 
-                allowfullscreen="" 
-                loading="lazy" 
-                referrerpolicy="no-referrer-when-downgrade">
-            </iframe>
+        <div class="map-bg-wrapper p-4 p-md-5">
+            <div class="map-iframe-container">
+                <!-- Google Maps Embed Iframe - Lokasi Resmi Cyberlabs Bandung -->
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.5588059086115!2d107.66179867587425!3d-6.943197993057106!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e7ea519b7d5f%3A0xc3afbf68fe6a9282!2sCyberlabs%20-%20PT%20Komunikasi%20Cerdas%20Indonesia!5e0!3m2!1sid!2sid!4v1710000000000!5m2!1sid!2sid" 
+                    width="100%" 
+                    height="450" 
+                    style="border:0; display:block;" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
         </div>
     </div>
-</div>
+</section>
 @endsection
