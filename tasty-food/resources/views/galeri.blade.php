@@ -1,137 +1,219 @@
 @extends('layouts.main')
 
-@section('title', 'Galeri')
+@section('title', 'Galeri Kami')
 
 @section('content')
 <style>
-    /* ==========================================================================
-       1. BANNER UTAMA GALERI
-       ========================================================================== */
-    .banner-gallery {
+    /* Styling Banner Atas (Header) - Seragam dengan halaman lain */
+    .gallery-header-banner {
+        background: url('{{ asset('assets/images/Group 70.png') }}') center/cover no-repeat;
+        height: 400px;
         position: relative;
-        background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url("{{ asset('assets/images/img-4.png') }}") center/cover no-repeat;
-        height: 280px;
+        margin-top: -110px; /* Diangkat agar serasi di bawah navbar transparan */
         display: flex;
         align-items: center;
-        margin-top: -105px;
-        padding-top: 100px;
     }
-    .banner-gallery h1 {
-        font-weight: 900;
-        font-size: 2.5rem;
-        letter-spacing: 2px;
-        color: #ffffff;
+    .gallery-header-banner::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: rgba(0, 0, 0, 0.4);
+        z-index: 1;
+    }
+    .gallery-header-banner .container {
+        position: relative;
+        z-index: 2;
     }
 
-    /* ==========================================================================
-       2. CAROUSEL SLIDER BESAR (TENGAH)
-       ========================================================================== */
-    .gallery-slider-section {
-        padding: 60px 0;
+    /* Kustomisasi Slider / Carousel Gambar */
+    .carousel-section {
+        background-color: #f8f9fa; /* Background abu-abu halus sesuai request */
     }
-    .carousel-inner {
-        border-radius: 20px; /* Sudut melengkung halus sesuai mockup */
-        overflow: hidden;
-    }
-    .carousel-item img {
-        width: 100%;
+    .carousel-inner, .carousel-item img {
+        border-radius: 20px; /* Lengkungan sudut gambar slider sesuai mockup */
         height: 450px;
         object-fit: cover;
     }
-    /* Mengubah tombol panah menjadi bulat putih minimalis */
-    .carousel-control-prev, .carousel-control-next {
+    .carousel-control-prev-icon, .carousel-control-next-icon {
+        background-color: #ffffff;
+        background-image: none;
+        border-radius: 50%;
         width: 45px;
         height: 45px;
-        background-color: #ffffff !important;
-        border-radius: 50%;
-        top: 50%;
-        transform: translateY(-50%);
-        opacity: 1;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.15);
     }
-    .carousel-control-prev { left: -22px; }
-    .carousel-control-next { right: -22px; }
-    
-    .carousel-control-prev-icon, .carousel-control-next-icon {
-        filter: invert(1); /* Mengubah warna panah di dalam bulatannya jadi hitam */
-        width: 18px;
-        height: 18px;
+    .carousel-control-prev-icon::after {
+        content: '‹';
+        color: #000000;
+        font-size: 30px;
+        font-weight: bold;
+    }
+    .carousel-control-next-icon::after {
+        content: '›';
+        color: #000000;
+        font-size: 30px;
+        font-weight: bold;
     }
 
-    /* ==========================================================================
-       3. GRID 4 KOLOM X 3 BARIS (BAWAH)
-       ========================================================================== */
-    .gallery-grid-section {
-        padding: 20px 0 100px 0;
-    }
-    .gallery-card-box {
-        border-radius: 16px;
+    /* Styling Grid Kotak 4x3 */
+    .gallery-grid-wrapper {
+        aspect-ratio: 1 / 1; /* Memaksa gambar selalu berbentuk kotak presisi */
         overflow: hidden;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+        border-radius: 15px; /* Lengkungan sudut grid foto sesuai mockup */
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
     }
-    .gallery-grid-img {
+    .gallery-grid-wrapper img {
         width: 100%;
-        height: 240px;
+        height: 100%;
         object-fit: cover;
+        transition: transform 0.4s ease;
+    }
+    .gallery-grid-wrapper img:hover {
+        transform: scale(1.06);
     }
 </style>
 
-<!-- 1. BANNER ATAS -->
-<div class="banner-gallery">
+<!-- ==========================================================================
+   1. HEADER BANNER (Latar Belakang Group 70.png)
+   ========================================================================== -->
+<section class="gallery-header-banner mb-5">
     <div class="container">
-        <h1 class="text-uppercase mb-0">Galeri Kami</h1>
+        <h1 class="text-white text-uppercase fw-bold display-4 tracking-wide">Galeri Kami</h1>
     </div>
-</div>
+</section>
 
-<!-- 2. CAROUSEL SLIDER BESAR -->
-<div class="container gallery-slider-section position-relative">
-    <div id="galleryCarousel" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img src="{{ asset('assets/images/anh-nguyen-kcA-c3f_3FE-unsplash.jpg') }}" alt="Slider Food 1">
-            </div>
-            <div class="carousel-item">
-                <img src="{{ asset('assets/images/fathul-abrar-T-qI_MI2EMA-unsplash.jpg') }}" alt="Slider Food 2">
-            </div>
-        </div>
-        <!-- Tombol navigasi bulat melayang -->
-        <button class="carousel-control-prev" type="button" data-bs-target="#galleryCarousel" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#galleryCarousel" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        </button>
-    </div>
-</div>
+<!-- ==========================================================================
+   2. INTERAKTIF SLIDER SECTION (Latar Belakang Abu-abu Halus)
+   ========================================================================== -->
+<section class="carousel-section py-5 mb-5">
+    <div class="container py-3">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                
+                <!-- Bootstrap 5 Carousel Components -->
+                <div id="galleryTopSlider" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <!-- Slide Foto 1 (Aktif Pertama) -->
+                        <div class="carousel-item active">
+                            <img src="{{ asset('assets/images/ella-olsson-mmnKI8kMxpc-unsplash.jpg') }}" class="d-block w-100" alt="Slider 1">
+                        </div>
+                        <!-- Slide Foto 2 -->
+                        <div class="carousel-item">
+                            <img src="{{ asset('assets/images/jonathan-borba-Gkc_xM3VY34-unsplash.jpg') }}" class="d-block w-100" alt="Slider 2">
+                        </div>
+                        <!-- Slide Foto 3 -->
+                        <div class="carousel-item">
+                            <img src="{{ asset('assets/images/mariana-medvedeva-iNwCO9ycBlc-unsplash.jpg') }}" class="d-block w-100" alt="Slider 3">
+                        </div>
+                        <!-- Slide Foto 4 -->
+                        <div class="carousel-item">
+                            <img src="{{ asset('assets/images/michele-blackwell-rAyCBQTH7ws-unsplash.jpg') }}" class="d-block w-100" alt="Slider 4">
+                        </div>
+                    </div>
+                    
+                    <!-- Tombol Geser Kiri -->
+                    <button class="carousel-control-prev" type="button" data-bs-target="#galleryTopSlider" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <!-- Tombol Geser Kanan -->
+                    <button class="carousel-control-next" type="button" data-bs-target="#galleryTopSlider" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
 
-<!-- 3. GRID FOTO (4 KOLOM x 3 BARIS) -->
-<div class="container gallery-grid-section">
-    <div class="row g-4">
-        @php
-            // List 12 gambar agar pas 3 baris kebawah
-            $images_grid = [
-                'anh-nguyen-kcA-c3f_3FE-unsplash.jpg',
-                'eiliv-aceron-ZuIDLSz3XLg-unsplash.jpg',
-                'monika-grabkowska-P1aohbiT-EY-unsplash.jpg',
-                'anna-pelzer-IGfIGP5ONV0-unsplash.jpg',
-                'fathul-abrar-T-qI_MI2EMA-unsplash.jpg',
-                'brooke-lark-1Rm9GLHV0UA-unsplash.jpg',
-                'jimmy-dean-Jvw3pxgeiZw-unsplash.jpg',
-                'ella-olsson-mmnKI8kMxpc-unsplash.jpg',
-                'sebastian-coman-photography-eBmyH7oO5wY-unsplash.jpg',
-                'brooke-lark-oaz0raysASk-unsplash.jpg',
-                'brooke-lark-nBtmglfY0HU-unsplash.jpg',
-                'img-2.png'
-            ];
-        @endphp
-
-        @foreach($images_grid as $img)
-        <div class="col-6 col-md-4 col-lg-3">
-            <div class="gallery-card-box">
-                <img src="{{ asset('assets/images/' . $img) }}" class="gallery-grid-img" alt="Gallery Grid Item">
             </div>
         </div>
-        @endforeach
     </div>
-</div>
+</section>
+
+<!-- ==========================================================================
+   3. GRID FOTO UTAMA SECTION (Susunan 4 Kolom x 3 Baris)
+   ========================================================================== -->
+<section class="py-5 my-4">
+    <div class="container">
+        
+        <div class="row g-4">
+            <!-- Baris 1 - Foto 1 -->
+            <div class="col-xl-3 col-md-6">
+                <div class="gallery-grid-wrapper">
+                    <img src="{{ asset('assets/images/anh-nguyen-kcA-c3f_3FE-unsplash.jpg') }}" alt="Galeri 1">
+                </div>
+            </div>
+            <!-- Baris 1 - Foto 2 -->
+            <div class="col-xl-3 col-md-6">
+                <div class="gallery-grid-wrapper">
+                    <img src="{{ asset('assets/images/anna-pelzer-IGfIGP5ONV0-unsplash.jpg') }}" alt="Galeri 2">
+                </div>
+            </div>
+            <!-- Baris 1 - Foto 3 -->
+            <div class="col-xl-3 col-md-6">
+                <div class="gallery-grid-wrapper">
+                    <img src="{{ asset('assets/images/brooke-lark-1Rm9GLHV0UA-unsplash.jpg') }}" alt="Galeri 3">
+                </div>
+            </div>
+            <!-- Baris 1 - Foto 4 -->
+            <div class="col-xl-3 col-md-6">
+                <div class="gallery-grid-wrapper">
+                    <img src="{{ asset('assets/images/brooke-lark-nBtmglfY0HU-unsplash.jpg') }}" alt="Galeri 4">
+                </div>
+            </div>
+
+            <!-- Baris 2 - Foto 5 -->
+            <div class="col-xl-3 col-md-6">
+                <div class="gallery-grid-wrapper">
+                    <img src="{{ asset('assets/images/brooke-lark-oaz0raysASk-unsplash.jpg') }}" alt="Galeri 5">
+                </div>
+            </div>
+            <!-- Baris 2 - Foto 6 -->
+            <div class="col-xl-3 col-md-6">
+                <div class="gallery-grid-wrapper">
+                    <img src="{{ asset('assets/images/eiliv-aceron-ZuIDLSz3XLg-unsplash.jpg') }}" alt="Galeri 6">
+                </div>
+            </div>
+            <!-- Baris 2 - Foto 7 -->
+            <div class="col-xl-3 col-md-6">
+                <div class="gallery-grid-wrapper">
+                    <img src="{{ asset('assets/images/fathul-abrar-T-qI_MI2EMA-unsplash.jpg') }}" alt="Galeri 7">
+                </div>
+            </div>
+            <!-- Baris 2 - Foto 8 -->
+            <div class="col-xl-3 col-md-6">
+                <div class="gallery-grid-wrapper">
+                    <img src="{{ asset('assets/images/jimmy-dean-Jvw3pxgeiZw-unsplash.jpg') }}" alt="Galeri 8">
+                </div>
+            </div>
+
+            <!-- Baris 3 - Foto 9 -->
+            <div class="col-xl-3 col-md-6">
+                <div class="gallery-grid-wrapper">
+                    <img src="{{ asset('assets/images/luisa-brimble-HvXEbkcXjSk-unsplash.jpg') }}" alt="Galeri 9">
+                </div>
+            </div>
+            <!-- Baris 3 - Foto 10 -->
+            <div class="col-xl-3 col-md-6">
+                <div class="gallery-grid-wrapper">
+                    <img src="{{ asset('assets/images/sebastian-coman-photography-eBmyH7oO5wY-unsplash.jpg') }}" alt="Galeri 10">
+                </div>
+            </div>
+            <!-- Baris 3 - Foto 11 -->
+            <div class="col-xl-3 col-md-6">
+                <div class="gallery-grid-wrapper">
+                    <img src="{{ asset('assets/images/sanket-shah-SVA7TyHxojY-unsplash.jpg') }}" alt="Galeri 11">
+                </div>
+            </div>
+            <!-- Baris 3 - Foto 12 -->
+            <div class="col-xl-3 col-md-6">
+                <div class="gallery-grid-wrapper">
+                    <img src="{{ asset('assets/images/monika-grabkowska-P1aohbiT-EY-unsplash.jpg') }}" alt="Galeri 12">
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
 @endsection
