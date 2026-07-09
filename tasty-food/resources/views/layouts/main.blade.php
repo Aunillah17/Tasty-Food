@@ -86,13 +86,24 @@
             </button>
             
             <div class="collapse navbar-collapse justify-content-end" id="cleanNavbarMenu">
-                <ul class="navbar-nav gap-2">
-                    <li class="nav-item"><a class="nav-link text-uppercase" href="{{ url('/') }}">Home</a></li>
-                    <li class="nav-item"><a class="nav-link text-uppercase" href="{{ url('/tentang') }}">Tentang</a></li>
-                    <li class="nav-item"><a class="nav-link text-uppercase" href="{{ url('/berita') }}">Berita</a></li>
-                    <li class="nav-item"><a class="nav-link text-uppercase" href="{{ url('/galeri') }}">Galeri</a></li>
-                    <li class="nav-item"><a class="nav-link text-uppercase" href="{{ url('/kontak') }}">Kontak</a></li>
-                </ul>
+                <!-- Contoh struktur menu navbar kamu, sesuaikan href-nya seperti ini -->
+<ul class="navbar-nav">
+    <li class="nav-item">
+        <a class="nav-link" href="{{ url('/') }}">Home</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{{ url('/tentang') }}">Tentang</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{{ url('/berita') }}">Berita</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{{ url('/galeri') }}">Galeri</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{{ url('/kontak') }}">Kontak</a>
+    </li>
+</ul>
             </div>
         </div>
     </nav>

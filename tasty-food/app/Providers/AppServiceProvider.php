@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\URL;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -19,6 +20,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        // Memaksa Laravel menggunakan URL Codespaces kamu secara global
+        URL::forceRootUrl('https://ominous-couscous-g4rw7pw944jxcpwgw-8000.app.github.dev');
     }
 }
