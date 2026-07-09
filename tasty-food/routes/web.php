@@ -1,10 +1,34 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PageController;
 
-Route::get('/', [PageController::class, 'home'])->name('home');
-Route::get('/tentang', [PageController::class, 'tentang'])->name('tentang');
-Route::get('/berita', [PageController::class, 'berita'])->name('berita');
-Route::get('/galeri', [PageController::class, 'galeri'])->name('galeri');
-Route::get('/kontak', [PageController::class, 'kontak'])->name('kontak');
+/*
+|--------------------------------------------------------------------------
+| Web Routes - Tasty Food (Reset Clean Setup)
+|--------------------------------------------------------------------------
+*/
+
+// Jalur Utama (Halaman Depan / Home)
+Route::get('/', function () {
+    return view('home');
+});
+
+// Jalur Halaman Tentang Kami
+Route::get('/tentang', function () {
+    return view('tentang');
+});
+
+// Jalur Halaman Berita (Nanti kita ubah pakai Controller pas masuk Tahap Backend)
+Route::get('/berita', function () {
+    return view('berita');
+});
+
+// Jalur Halaman Galeri Foto
+Route::get('/galeri', function () {
+    return view('galeri');
+});
+
+// Jalur Halaman Kontak & Maps
+Route::get('/kontak', function () {
+    return view('kontak');
+});
