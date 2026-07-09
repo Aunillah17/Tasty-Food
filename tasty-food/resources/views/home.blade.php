@@ -4,298 +4,324 @@
 
 @section('content')
 <style>
-    /* ==========================================================================
-       1. HERO SECTION
-       ========================================================================== */
-    .hero-section {
-        position: relative;
-        background: url("{{ asset('assets/images/img-4.png') }}") center/cover no-repeat;
-        min-height: 95vh;
-        display: flex;
-        align-items: center;
-        margin-top: -105px; /* Menarik konten ke atas agar menyatu di bawah navbar transparan */
-        padding-top: 110px;
-    }
-    .hero-text-box h1 {
-        font-weight: 900;
-        font-size: 3.8rem;
-        line-height: 1.1;
-        letter-spacing: -1px;
-    }
-    .hero-text-box .text-outline {
-        color: transparent;
-        -webkit-text-stroke: 2px #000000;
-    }
-    .hero-text-box .text-solid {
-        color: #000000;
-    }
-    .btn-square-dark {
+    /* Aksen tombol & teks oranye kekuningan sesuai mockup */
+    .btn-dark-custom {
         background-color: #000000;
         color: #ffffff;
-        border: none;
-        border-radius: 0;
-        padding: 14px 40px;
-        font-weight: 700;
+        border-radius: 0px;
+        padding: 12px 35px;
+        font-weight: 600;
+        text-transform: uppercase;
         font-size: 13px;
         letter-spacing: 1px;
         transition: all 0.3s ease;
     }
-    .btn-square-dark:hover {
-        background-color: #ffc107;
+    .btn-dark-custom:hover {
+        background-color: #fbbf24;
         color: #000000;
     }
-    .hero-line {
+    .text-accent-yellow {
+        color: #fbbf24;
+        font-weight: 600;
+        font-size: 14px;
+        text-decoration: none;
+    }
+    .text-accent-yellow:hover {
+        color: #f59e0b;
+    }
+    
+    /* Garis dekoratif abu-abu tipis di atas judul mockup */
+    .title-line {
         width: 60px;
-        height: 4px;
+        height: 3px;
+        background-color: #a1a1aa;
+        margin-bottom: 20px;
+    }
+    .title-line-center {
+        width: 50px;
+        height: 3px;
         background-color: #000000;
+        margin: 20px auto 0 auto;
     }
 
-    /* ==========================================================================
-       2. TENTANG KAMI SECTION (DENGAN CARD MELAYANG)
-       ========================================================================== */
-    .about-section {
-        padding: 80px 0 0 0;
-    }
-    .section-title {
-        font-weight: 800;
-        font-size: 24px;
-        letter-spacing: 1px;
-        color: #000000;
-    }
-    .about-bg-banner {
-        background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url("{{ asset('assets/images/img-3.png') }}") center/cover no-repeat;
-        min-height: 350px;
-        margin-top: 60px;
-        padding-top: 80px;
+    /* Styling Section Tentang Kami & 4 Card Bulat */
+    .about-bg-section {
+        background: url('{{ asset('assets/images/img-4.png') }}') center/cover no-repeat;
+        padding: 100px 0;
         position: relative;
     }
-    .about-card-container {
-        margin-top: -180px; /* Menarik card agar melayang di atas banner */
-        position: relative;
-        z-index: 5;
+    .about-bg-section::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: rgba(0, 0, 0, 0.4);
+        z-index: 1;
     }
-    .floating-card {
+    .about-bg-section .container {
+        position: relative;
+        z-index: 2;
+    }
+    .food-card {
         background: #ffffff;
+        border-radius: 20px;
         border: none;
-        border-radius: 15px;
-        padding: 30px 20px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        padding: 35px 20px;
         text-align: center;
         transition: transform 0.3s ease;
     }
-    .floating-card:hover {
+    .food-card:hover {
         transform: translateY(-10px);
     }
-    .floating-card img {
-        width: 100px;
-        height: 100px;
-        border-radius: 50%;
+    .food-card img {
+        width: 120px;
+        height: 120px;
         object-fit: cover;
-        margin-top: -60px; /* Membuat gambar bulat menonjol keluar card sedikit */
+        border-radius: 50%;
+        margin-top: -85px;
         margin-bottom: 20px;
         border: 5px solid #ffffff;
         box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     }
 
-    /* ==========================================================================
-       3. BERITA KAMI SECTION
-       ========================================================================== */
-    .news-section {
-        padding: 100px 0;
-    }
-    .main-news-card {
-        border: none;
-        border-radius: 16px;
+    /* Styling Grid Galeri agar presisi kotak */
+    .gallery-img-wrapper {
+        aspect-ratio: 1 / 1;
         overflow: hidden;
-        background: #ffffff;
-        box-shadow: 0 8px 30px rgba(0,0,0,0.04);
-    }
-    .main-news-img {
-        height: 340px;
-        object-fit: cover;
-        width: 100%;
-    }
-    .side-news-card {
-        border: none;
         border-radius: 12px;
-        overflow: hidden;
-        background: #ffffff;
-        box-sizing: border-box;
-        box-shadow: 0 5px 20px rgba(0,0,0,0.03);
+    }
+    .gallery-img-wrapper img {
+        width: 100%;
         height: 100%;
-    }
-    .side-news-img {
-        height: 140px;
         object-fit: cover;
-        width: 100%;
+        transition: transform 0.5s ease;
     }
-    .news-readmore {
-        font-weight: 700;
-        font-size: 13px;
-        color: #ffc107;
-        text-decoration: none;
-    }
-
-    /* ==========================================================================
-       4. GALERI KAMI SECTION
-       ========================================================================== */
-    .gallery-section {
-        padding: 20px 0 100px 0;
-    }
-    .gallery-thumb {
-        width: 100%;
-        height: 260px;
-        object-fit: cover;
-        border-radius: 12px;
-        transition: transform 0.4s ease;
-    }
-    .gallery-box {
-        overflow: hidden;
-        border-radius: 12px;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-    }
-    .gallery-box:hover .gallery-thumb {
-        transform: scale(1.06);
+    .gallery-img-wrapper img:hover {
+        transform: scale(1.08);
     }
 </style>
 
-<!-- ==========================================
-     1. HERO SECTION
-     ========================================== -->
-<div class="hero-section">
+<!-- ==========================================================================
+   1. HERO SECTION (Teks Kiri, Gambar Kanan - Responsif HP)
+   ========================================================================== -->
+<section class="py-5 mb-5">
     <div class="container">
-        <div class="row">
-            <div class="col-md-7 col-lg-6 hero-text-box">
-                <div class="hero-line mb-4"></div>
-                <h1 class="text-outline text-uppercase mb-0">HEALTHY</h1>
-                <h1 class="text-solid text-uppercase mb-4">TASTY FOOD</h1>
-                <p class="text-dark opacity-75 mb-4 lh-lg" style="max-width: 450px; font-size: 14px;">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Bodas maecenas elementum tempor pretium sit amet digi ssim koli.
+        <div class="row align-items-center g-5">
+            <div class="col-lg-6 order-2 order-lg-1">
+                <div class="title-line"></div>
+                <h1 class="display-4 fw-light text-uppercase tracking-wide text-dark mb-1">Healthy</h1>
+                <h1 class="display-3 fw-bold text-uppercase text-dark mb-4" style="letter-spacing: -1px;">Tasty Food</h1>
+                <p class="text-muted mb-5 lead-sm" style="max-width: 500px; line-height: 1.8;">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sed lorem dictum, 
+                    varius justo id, interdum diam. In hac habitasse platea dictumst. Fusce id lorem vel eros elementum.
                 </p>
-                <a href="/tentang" class="btn btn-square-dark text-uppercase">Tentang Kami</a>
+                <a href="{{ url('/tentang') }}" class="btn btn-dark-custom">Tentang Kami</a>
+            </div>
+            <div class="col-lg-6 order-1 order-lg-2 text-center text-lg-end overflow-hidden">
+                <!-- Gambar melengkung besar di sudut kanan -->
+                <img src="{{ asset('assets/images/img-4.png') }}" alt="Healthy Tasty Food" class="img-fluid" style="max-height: 550px; object-fit: contain;">
             </div>
         </div>
     </div>
-</div>
+</section>
 
-
-<!-- ==========================================
-     2. TENTANG KAMI SECTION
-     ========================================== -->
-<div class="about-section text-center">
-    <div class="container">
-        <h2 class="section-title text-uppercase mb-3">Tentang Kami</h2>
-        <p class="text-muted mx-auto lh-lg mb-0" style="max-width: 650px; font-size: 14px;">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin elementum id arcu id sollicitudin. Ut luctus finibus erat ac finibus. Cras varius finibus animid est laborum.
-        </p>
+<!-- ==========================================================================
+   2. TENTANG KAMI SECTION & 4 CARD MAKANAN
+   ========================================================================== -->
+<section class="py-5 my-5 text-center">
+    <div class="container mb-5">
+        <h2 class="text-uppercase fw-bold text-dark mb-3">Tentang Kami</h2>
+        <div class="row justify-content-center">
+            <div class="col-lg-7">
+                <p class="text-muted" style="line-height: 1.8;">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sit amet lectus convallis, 
+                    interdum diam non, interdum diam. In hac habitasse platea dictumst. 
+                    Sed feugiat elementum dui vel vulputate.
+                </p>
+                <div class="title-line-center"></div>
+            </div>
+        </div>
     </div>
-    
-    <!-- Bagian Banner Background Gelap -->
-    <div class="about-bg-banner"></div>
+</section>
 
-    <!-- Bagian 4 Card Melayang Menumpuk Banner -->
-    <div class="container about-card-container">
+<!-- Section Background Gambar dengan 4 Card Menjorok ke Atas -->
+<section class="about-bg-section mb-5">
+    <div class="container" style="margin-top: 40px;">
         <div class="row g-4 justify-content-center">
-            @php
-                $cards = [
-                    ['img' => 'anh-nguyen-kcA-c3f_3FE-unsplash.jpg', 'title' => 'LOREM IPSUM'],
-                    ['img' => 'eiliv-aceron-ZuIDLSz3XLg-unsplash.jpg', 'title' => 'LOREM IPSUM'],
-                    ['img' => 'anna-pelzer-IGfIGP5ONV0-unsplash.jpg', 'title' => 'LOREM IPSUM'],
-                    ['img' => 'brooke-lark-1Rm9GLHV0UA-unsplash.jpg', 'title' => 'LOREM IPSUM']
-                ];
-            @endphp
-
-            @foreach($cards as $c)
-            <div class="col-6 col-md-3">
-                <div class="floating-card">
-                    <img src="{{ asset('assets/images/' . $c['img']) }}" alt="Food">
-                    <h6 class="fw-bold text-uppercase mb-3" style="font-size: 15px; letter-spacing: 0.5px;">{{ $c['title'] }}</h6>
-                    <p class="text-muted small mb-0 lh-base">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <!-- Card 1 -->
+            <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
+                <div class="food-card">
+                    <img src="{{ asset('assets/images/img-1.png') }}" alt="Menu 1">
+                    <h5 class="fw-bold text-uppercase mb-3">Lorem Ipsum</h5>
+                    <p class="text-muted small mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi efficitur maecenas.</p>
                 </div>
             </div>
-            @endforeach
+            <!-- Card 2 -->
+            <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
+                <div class="food-card">
+                    <img src="{{ asset('assets/images/img-2.png') }}" alt="Menu 2">
+                    <h5 class="fw-bold text-uppercase mb-3">Lorem Ipsum</h5>
+                    <p class="text-muted small mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi efficitur maecenas.</p>
+                </div>
+            </div>
+            <!-- Card 3 -->
+            <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
+                <div class="food-card">
+                    <img src="{{ asset('assets/images/img-3.png') }}" alt="Menu 3">
+                    <h5 class="fw-bold text-uppercase mb-3">Lorem Ipsum</h5>
+                    <p class="text-muted small mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi efficitur maecenas.</p>
+                </div>
+            </div>
+            <!-- Card 4 -->
+            <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
+                <div class="food-card">
+                    <img src="{{ asset('assets/images/img-4.png') }}" alt="Menu 4">
+                    <h5 class="fw-bold text-uppercase mb-3">Lorem Ipsum</h5>
+                    <p class="text-muted small mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi efficitur maecenas.</p>
+                </div>
+            </div>
         </div>
     </div>
-</div>
+</section>
 
-
-<!-- ==========================================
-     3. BERITA KAMI SECTION
-     ========================================== -->
-<div class="container news-section">
-    <h2 class="section-title text-uppercase text-center mb-5">Berita Kami</h2>
-    
-    <div class="row g-4">
-        <!-- Berita Utama Sebelah Kiri (Besar) -->
-        <div class="col-lg-6">
-            <div class="card main-news-card h-100">
-                <img src="{{ asset('assets/images/jimmy-dean-Jvw3pxgeiZw-unsplash.jpg') }}" class="main-news-img" alt="Berita Utama">
-                <div class="card-body p-4">
-                    <h5 class="fw-bold text-uppercase mb-2" style="font-size: 18px; letter-spacing: 0.5px;">LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISCING ELIT</h5>
-                    <p class="text-muted small lh-lg mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Torquent integer elementum tempor pretium sit amet digi ssim koli morbi elementum.</p>
-                    <a href="/berita" class="news-readmore text-uppercase">Baca Selengkapnya</a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Grid 4 Berita Kecil Sebelah Kanan (2x2) -->
-        <div class="col-lg-6">
-            <div class="row g-4">
-                @php
-                    $side_news = [
-                        ['img' => 'ella-olsson-mmnKI8kMxpc-unsplash.jpg', 'title' => 'LOREM IPSUM'],
-                        ['img' => 'sebastian-coman-photography-eBmyH7oO5wY-unsplash.jpg', 'title' => 'LOREM IPSUM'],
-                        ['img' => 'brooke-lark-oaz0raysASk-unsplash.jpg', 'title' => 'LOREM IPSUM'],
-                        ['img' => 'brooke-lark-nBtmglfY0HU-unsplash.jpg', 'title' => 'LOREM IPSUM']
-                    ];
-                @endphp
-
-                @foreach($side_news as $sn)
-                <div class="col-12 col-sm-6">
-                    <div class="card side-news-card">
-                        <img src="{{ asset('assets/images/' . $sn['img']) }}" class="side-news-img" alt="Berita Side">
-                        <div class="card-body p-3">
-                            <h6 class="fw-bold text-uppercase mb-2" style="font-size: 14px;">{{ $sn['title'] }}</h6>
-                            <p class="text-muted card-text small lh-base mb-3" style="font-size: 12px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                            <a href="/berita" class="news-readmore text-uppercase" style="font-size: 11px;">Baca Selengkapnya</a>
+<!-- ==========================================================================
+   3. BERITA KAMI SECTION (Pindah Halaman Saat Diklik)
+   ========================================================================== -->
+<section class="py-5 my-5">
+    <div class="container">
+        <h2 class="text-uppercase fw-bold text-dark text-center mb-5">Berita Kami</h2>
+        
+        <div class="row g-4">
+            <!-- Berita Utama (Kiri Gede) -->
+            <div class="col-lg-6">
+                <div class="card h-100 border-0 shadow-sm" style="border-radius: 12px; overflow: hidden;">
+                    <img src="{{ asset('assets/images/fathul-abrar-T-qI_MI2EMA-unsplash.jpg') }}" class="card-img-top" alt="Berita Utama" style="height: 340px; object-fit: cover;">
+                    <div class="card-body p-4 d-flex flex-column justify-content-between">
+                        <div>
+                            <h4 class="fw-bold text-uppercase mb-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit</h4>
+                            <p class="text-muted small" style="line-height: 1.7;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sit amet lectus convallis, interdum diam non, hendrerit diam. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Sed elementum feugiat dui.</p>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center mt-3">
+                            <a href="{{ url('/berita') }}" class="text-accent-yellow">Baca selengkapnya</a>
+                            <span class="text-muted" style="font-size: 20px;">•••</span>
                         </div>
                     </div>
                 </div>
-                @endforeach
+            </div>
+            
+            <!-- Berita Sampingan Grid (Kanan - 4 Items Mini) -->
+            <div class="col-lg-6">
+                <div class="row g-4">
+                    <!-- Sampingan 1 -->
+                    <div class="col-md-6">
+                        <div class="card h-100 border-0 shadow-sm" style="border-radius: 12px; overflow: hidden;">
+                            <img src="{{ asset('assets/images/sanket-shah-SVA7TyHxojY-unsplash.jpg') }}" class="card-img-top" alt="Berita" style="height: 160px; object-fit: cover;">
+                            <div class="card-body p-3">
+                                <h6 class="fw-bold text-uppercase mb-2">Lorem Ipsum</h6>
+                                <p class="text-muted small mb-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <a href="{{ url('/berita') }}" class="text-accent-yellow" style="font-size: 12px;">Baca selengkapnya</a>
+                                    <span class="text-muted">•••</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Sampingan 2 -->
+                    <div class="col-md-6">
+                        <div class="card h-100 border-0 shadow-sm" style="border-radius: 12px; overflow: hidden;">
+                            <img src="{{ asset('assets/images/sebastian-coman-photography-eBmyH7oO5wY-unsplash.jpg') }}" class="card-img-top" alt="Berita" style="height: 160px; object-fit: cover;">
+                            <div class="card-body p-3">
+                                <h6 class="fw-bold text-uppercase mb-2">Lorem Ipsum</h6>
+                                <p class="text-muted small mb-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <a href="{{ url('/berita') }}" class="text-accent-yellow" style="font-size: 12px;">Baca selengkapnya</a>
+                                    <span class="text-muted">•••</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Sampingan 3 -->
+                    <div class="col-md-6">
+                        <div class="card h-100 border-0 shadow-sm" style="border-radius: 12px; overflow: hidden;">
+                            <img src="{{ asset('assets/images/jimmy-dean-Jvw3pxgeiZw-unsplash.jpg') }}" class="card-img-top" alt="Berita" style="height: 160px; object-fit: cover;">
+                            <div class="card-body p-3">
+                                <h6 class="fw-bold text-uppercase mb-2">Lorem Ipsum</h6>
+                                <p class="text-muted small mb-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <a href="{{ url('/berita') }}" class="text-accent-yellow" style="font-size: 12px;">Baca selengkapnya</a>
+                                    <span class="text-muted">•••</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Sampingan 4 -->
+                    <div class="col-md-6">
+                        <div class="card h-100 border-0 shadow-sm" style="border-radius: 12px; overflow: hidden;">
+                            <img src="{{ asset('assets/images/luisa-brimble-HvXEbkcXjSk-unsplash.jpg') }}" class="card-img-top" alt="Berita" style="height: 160px; object-fit: cover;">
+                            <div class="card-body p-3">
+                                <h6 class="fw-bold text-uppercase mb-2">Lorem Ipsum</h6>
+                                <p class="text-muted small mb-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <a href="{{ url('/berita') }}" class="text-accent-yellow" style="font-size: 12px;">Baca selengkapnya</a>
+                                    <span class="text-muted">•••</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-</div>
+</section>
 
-
-<!-- ==========================================
-     4. GALERI KAMI SECTION
-     ========================================== -->
-<div class="container gallery-section text-center">
-    <h2 class="section-title text-uppercase mb-5">Galeri Kami</h2>
-    
-    <div class="row g-4 mb-5">
-        @php
-            $galeri_home = [
-                'monika-grabkowska-P1aohbiT-EY-unsplash.jpg',
-                'fathul-abrar-T-qI_MI2EMA-unsplash.jpg',
-                'anh-nguyen-kcA-c3f_3FE-unsplash.jpg',
-                'eiliv-aceron-ZuIDLSz3XLg-unsplash.jpg',
-                'anna-pelzer-IGfIGP5ONV0-unsplash.jpg',
-                'brooke-lark-1Rm9GLHV0UA-unsplash.jpg'
-            ];
-        @endphp
-
-        @foreach($galeri_home as $gh)
-        <div class="col-6 col-md-4">
-            <div class="gallery-box">
-                <img src="{{ asset('assets/images/' . $gh) }}" class="gallery-thumb" alt="Galeri Tasty Food">
+<!-- ==========================================================================
+   4. GALERI KAMI SECTION (Grid Sesuai Urutan Kamu)
+   ========================================================================== -->
+<section class="py-5 my-5">
+    <div class="container text-center">
+        <h2 class="text-uppercase fw-bold text-dark mb-5">Galeri Kami</h2>
+        
+        <div class="row g-4 mb-5">
+            <!-- Foto 1 -->
+            <div class="col-lg-4 col-md-6">
+                <div class="gallery-img-wrapper">
+                    <img src="{{ asset('assets/images/brooke-lark-oaz0raysASk-unsplash.jpg') }}" alt="Galeri 1">
+                </div>
+            </div>
+            <!-- Foto 2 -->
+            <div class="col-lg-4 col-md-6">
+                <div class="gallery-img-wrapper">
+                    <img src="{{ asset('assets/images/ella-olsson-mmnKI8kMxpc-unsplash.jpg') }}" alt="Galeri 2">
+                </div>
+            </div>
+            <!-- Foto 3 -->
+            <div class="col-lg-4 col-md-6">
+                <div class="gallery-img-wrapper">
+                    <img src="{{ asset('assets/images/eiliv-aceron-ZuIDLSz3XLg-unsplash.jpg') }}" alt="Galeri 3">
+                </div>
+            </div>
+            <!-- Foto 4 -->
+            <div class="col-lg-4 col-md-6">
+                <div class="gallery-img-wrapper">
+                    <img src="{{ asset('assets/images/jonathan-borba-Gkc_xM3VY34-unsplash.jpg') }}" alt="Galeri 4">
+                </div>
+            </div>
+            <!-- Foto 5 -->
+            <div class="col-lg-4 col-md-6">
+                <div class="gallery-img-wrapper">
+                    <img src="{{ asset('assets/images/mariana-medvedeva-iNwCO9ycBlc-unsplash.jpg') }}" alt="Galeri 5">
+                </div>
+            </div>
+            <!-- Foto 6 -->
+            <div class="col-lg-4 col-md-6">
+                <div class="gallery-img-wrapper">
+                    <img src="{{ asset('assets/images/monika-grabkowska-P1aohbiT-EY-unsplash.jpg') }}" alt="Galeri 6">
+                </div>
             </div>
         </div>
-        @endforeach
+        
+        <!-- Tombol Lihat Lebih Banyak -->
+        <a href="{{ url('/galeri') }}" class="btn btn-dark-custom px-5">Lihat Lebih Banyak</a>
     </div>
-
-    <!-- Tombol Lihat Lebih Banyak Kotak Sesuai Contoh Mockup -->
-    <a href="/galeri" class="btn btn-square-dark text-uppercase px-5 py-3">Lihat Lebih Banyak</a>
-</div>
+</section>
 @endsection
