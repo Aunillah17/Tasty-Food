@@ -6,9 +6,8 @@
     <title>@yield('title') - Tasty Food</title>
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Google Fonts & FontAwesome -->
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     
     <style>
         body {
@@ -58,13 +57,11 @@
             transition: all 0.3s ease;
         }
         .navbar-toggler-icon {
-            /* Default garis hitam pekat */
             filter: invert(0); 
         }
 
         /* --- AUTOMATIC COLOR ADAPTATION FOR SUBPAGES (NON-HOME) --- */
         @unless(Request::is('/'))
-            /* Jika BUKAN halaman utama/home, paksa warna teks logo & tombol burger jadi PUTIH */
             .navbar-brand-custom {
                 color: #ffffff !important;
             }
@@ -72,10 +69,8 @@
                 border-color: #ffffff !important;
             }
             .navbar-toggler-icon {
-                /* Mengubah ikon burger hitam menjadi putih bersih agar kontras dengan banner gelap */
                 filter: invert(1) brightness(2); 
             }
-            /* Untuk menu desktop di halaman lain juga menyesuaikan jadi putih */
             .nav-link-custom {
                 color: #ffffff !important;
             }
@@ -84,7 +79,7 @@
         /* --- RESPONSIVE MOBILE DROPDOWN HP FIX --- */
         @media (max-width: 991.98px) {
             .navbar-collapse {
-                background-color: #111111 !important; /* Kotak drop-down HP tetap hitam solid biar fokus */
+                background-color: #111111 !important;
                 padding: 25px;
                 border-radius: 12px;
                 margin-top: 15px;
@@ -92,8 +87,6 @@
                 position: relative;
                 z-index: 10001 !important;
             }
-            
-            /* Paksa tulisan menu di dalam dropdown HP selalu PUTIH BERSIH agar tidak nabrak */
             .navbar-nav .nav-link-custom {
                 color: #ffffff !important;
                 padding: 14px 12px !important;
@@ -102,7 +95,7 @@
                 text-align: left;
             }
             .navbar-nav .nav-item:last-child .nav-link-custom {
-                border-bottom: none !important; /* Hilangkan garis pembatas di pilihan paling bawah */
+                border-bottom: none !important;
             }
             .navbar-nav .nav-link-custom:hover {
                 color: #fbbf24 !important;
@@ -145,24 +138,33 @@
         .footer-links a:hover {
             color: #ffffff;
         }
-        .social-icon {
-            width: 40px;
-            height: 40px;
-            background-color: #333333;
-            color: #ffffff;
-            border-radius: 50%;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 10px;
-            text-decoration: none;
-            transition: all 0.3s ease;
+        
+        /* --- BRANDED ASSETS FOR SOCIAL MEDIA --- */
+        .social-icon-box {
+            display: inline-block;
+            margin-right: 15px;
+            transition: transform 0.3s ease;
         }
-        .social-icon:hover {
-            background-color: #fbbf24;
-            color: #000000;
+        .social-icon-box:hover {
             transform: translateY(-3px);
         }
+        .social-img-asset {
+            width: 32px;  /* Ukuran disesuaikan agar proporsional */
+            height: auto;
+        }
+
+        /* --- BRANDED ASSETS FOR CONTACT LIST --- */
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .contact-img-asset {
+            width: 24px;  /* Sesuai ukuran aset 24px bawaannya */
+            height: auto;
+            flex-shrink: 0;
+        }
+
         .footer-bottom {
             border-top: 1px solid #222222;
             padding-top: 30px;
@@ -210,7 +212,7 @@
         @yield('content')
     </main>
 
-    <!-- GLOBAL FOOTER -->
+    <!-- GLOBAL FOOTER (BRANDED ASSETS VERSION) -->
     <footer class="footer-custom">
         <div class="container">
             <div class="row g-5">
@@ -220,9 +222,15 @@
                     <p class="footer-text mb-4">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliqam at dignissim nunc, id maximus ex. Etiam nec dignissim elit, at dignissim enim.
                     </p>
-                    <div class="d-flex">
-                        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                    <div class="d-flex align-items-center">
+                        <!-- Menggunakan Aset Facebook Resmi Perusahaan -->
+                        <a href="https://facebook.com" class="social-icon-box" target="_blank">
+                            <img src="{{ asset('assets/images/001-facebook@2x.png') }}" alt="Facebook" class="social-img-asset">
+                        </a>
+                        <!-- Menggunakan Aset Twitter Resmi Perusahaan -->
+                        <a href="https://twitter.com" class="social-icon-box" target="_blank">
+                            <img src="{{ asset('assets/images/002-twitter@2x.png') }}" alt="Twitter" class="social-img-asset">
+                        </a>
                     </div>
                 </div>
                 
@@ -252,14 +260,20 @@
                 <div class="col-lg-4 col-md-6">
                     <h5 class="footer-title">Contact Info</h5>
                     <ul class="list-unstyled footer-text d-flex flex-column gap-3">
-                        <li class="d-flex align-items-center gap-2">
-                            <i class="text-white fa-regular fa-envelope"></i> tastyfood@gmail.com
+                        <!-- Kontak: Email menggunakan ic_markunread -->
+                        <li class="contact-item">
+                            <img src="{{ asset('assets/images/ic_markunread_24px@2x.png') }}" alt="Email Icon" class="contact-img-asset">
+                            <span>tastyfood@gmail.com</span>
                         </li>
-                        <li class="d-flex align-items-center gap-2">
-                            <i class="text-white fa-solid fa-phone"></i> +62 812 3456 7890
+                        <!-- Kontak: Telepon menggunakan ic_call -->
+                        <li class="contact-item">
+                            <img src="{{ asset('assets/images/ic_call_24px@2x.png') }}" alt="Phone Icon" class="contact-img-asset">
+                            <span>+62 812 3456 7890</span>
                         </li>
-                        <li class="d-flex align-items-top gap-2">
-                            <i class="text-white fa-solid fa-location-dot mt-1"></i> <span>Kota Bandung, Jawa Barat</span>
+                        <!-- Kontak: Lokasi menggunakan ic_place -->
+                        <li class="contact-item">
+                            <img src="{{ asset('assets/images/ic_place_24px@2x.png') }}" alt="Location Icon" class="contact-img-asset">
+                            <span>Kota Bandung, Jawa Barat</span>
                         </li>
                     </ul>
                 </div>

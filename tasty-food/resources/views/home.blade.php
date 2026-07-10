@@ -61,6 +61,13 @@
         position: relative;
         z-index: 2;
     }
+    .card-section-bg {
+    background-image: url("{{ asset('assets/images/Group 70.png') }}");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    }
     .food-card {
         background: #ffffff;
         border-radius: 20px;
@@ -145,7 +152,7 @@
 </section>
 
 <!-- Section Background Gambar dengan 4 Card Menjorok ke Atas -->
-<section class="about-bg-section mb-5">
+<section class="card-section-bg about-bg-section mb-5">
     <div class="container" style="margin-top: 40px;">
         <div class="row g-4 justify-content-center">
             <!-- Card 1 -->
