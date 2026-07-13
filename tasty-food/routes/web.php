@@ -1,34 +1,53 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BeritaController;
+use App\Http\Controllers\TentangController; // Disatukan di atas agar rapi
 
 /*
 |--------------------------------------------------------------------------
-| Web Routes - Tasty Food (Reset Clean Setup)
+| Web Routes
 |--------------------------------------------------------------------------
 */
 
-// Jalur Utama (Halaman Depan / Home)
-Route::get('/', function () {
-    return view('home');
-});
+// ==========================================================================
+// 1. ROUTE HALAMAN DEPAN (WEB UTAMA)
+// ==========================================================================
 
-// Jalur Halaman Tentang Kami
-Route::get('/tentang', function () {
-    return view('tentang');
-});
+// Halaman Utama (Home)
+Route::get('/', [BeritaController::class, 'home']);
 
-// Jalur Halaman Berita (Nanti kita ubah pakai Controller pas masuk Tahap Backend)
-Route::get('/berita', function () {
-    return view('berita');
-});
+// Halaman Berita Kami
+Route::get('/berita', [BeritaController::class, 'index']);
 
-// Jalur Halaman Galeri Foto
+// Halaman Detail/Baca Berita Khusus
+Route::get('/berita/{id}', [BeritaController::class, 'show']);
+
+// Halaman Tentang Kami (Sekarang diatur oleh TentangController agar dinamis)
+Route::get('/tentang', [TentangController::class, 'index']);
+
+// Halaman Galeri
 Route::get('/galeri', function () {
     return view('galeri');
 });
 
-// Jalur Halaman Kontak & Maps
+// Halaman Kontak
 Route::get('/kontak', function () {
     return view('kontak');
 });
+
+
+// ==========================================================================
+// 2. ROUTE PINTU RAHASIA PANEL ADMIN (CMS)
+// ==========================================================================
+
+// Dashboard Utama Admin
+Route::get('/tasty-secret-admin', function () {
+    return view('admin.dashboard');
+});
+
+// Menampilkan halaman form edit Tentang di admin
+Route::get('/tasty-secret-admin/tentang', [TentangController::class, 'editAdmin']);
+
+// Memproses tombol "Simpan Perubahan" form Tentang ke database
+Route::post('/tasty-secret-admin/tentang/update', [TentangController::class, 'updateAdmin']);

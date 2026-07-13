@@ -209,7 +209,7 @@
                             <p class="text-muted small" style="line-height: 1.7;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sit amet lectus convallis, interdum diam non, hendrerit diam. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Sed elementum feugiat dui.</p>
                         </div>
                         <div class="d-flex justify-content-between align-items-center mt-3">
-                            <a href="{{ url('/berita') }}" class="text-accent-yellow">Baca selengkapnya</a>
+                            <a href="{{ url('/berita/1') }}" class="btn btn-dark-custom">Baca Selengkapnya</a>
                             <span class="text-muted" style="font-size: 20px;">•••</span>
                         </div>
                     </div>

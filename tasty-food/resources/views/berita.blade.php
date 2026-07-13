@@ -112,7 +112,7 @@
                 <p class="text-muted mb-5 text-justify" style="line-height: 1.8;">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ornare, augue eu rutrum commodo, dui diam convallis arcu, eget consectetur ex sem eget lacus. Nullam vitae dignissim neque, vel luctus ex. Fusce sit amet viverra ante.
                 </p>
-                <a href="#" class="btn btn-dark-custom">Baca Selengkapnya</a>
+                <a href="{{ url('/berita/1') }}" class="btn btn-dark-custom">Baca Selengkapnya</a>
             </div>
         </div>
     </div>
