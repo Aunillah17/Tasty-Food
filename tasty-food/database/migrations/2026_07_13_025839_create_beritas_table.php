@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('beritas', function (Blueprint $table) {
             $table->id();
             $table->string('judul');
-            $table->string('ringkasan');
-            $table->text('isi');
-            $table->string('gambar')->nullable(); // nullable agar kalau belum ada foto gak error
+            $table->text('deskripsi_pendek'); // Untuk preview di halaman depan
+            $table->text('detail_berita');    // Isi lengkap berita pas diklik
+            $table->string('gambar');         // Nama file gambar berita
             $table->timestamps();
         });
     }

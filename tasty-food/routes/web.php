@@ -2,7 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BeritaController;
-use App\Http\Controllers\TentangController; // Disatukan di atas agar rapi
+use App\Http\Controllers\TentangController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,15 +16,15 @@ use App\Http\Controllers\TentangController; // Disatukan di atas agar rapi
 // ==========================================================================
 
 // Halaman Utama (Home)
-Route::get('/', [BeritaController::class, 'home']);
+Route::get('/', [HomeController::class, 'index']);
 
-// Halaman Berita Kami
+// Halaman Berita Kami (Menampilkan Semua Berita)
 Route::get('/berita', [BeritaController::class, 'index']);
 
-// Halaman Detail/Baca Berita Khusus
+// Halaman Detail / Baca Berita Khusus (Fitur Baca Selengkapnya Tetap Aman)
 Route::get('/berita/{id}', [BeritaController::class, 'show']);
 
-// Halaman Tentang Kami (Sekarang diatur oleh TentangController agar dinamis)
+// Halaman Tentang Kami
 Route::get('/tentang', [TentangController::class, 'index']);
 
 // Halaman Galeri
@@ -38,7 +39,7 @@ Route::get('/kontak', function () {
 
 
 // ==========================================================================
-// 2. ROUTE PINTU RAHASIA PANEL ADMIN (CMS)
+// 2. ROUTE PANEL ADMIN (CMS)
 // ==========================================================================
 
 // Dashboard Utama Admin
@@ -46,8 +47,18 @@ Route::get('/tasty-secret-admin', function () {
     return view('admin.dashboard');
 });
 
-// Menampilkan halaman form edit Tentang di admin
-Route::get('/tasty-secret-admin/tentang', [TentangController::class, 'editAdmin']);
+// Kelola Halaman Home
+Route::get('/tasty-secret-admin/home', [HomeController::class, 'editAdmin']);
+Route::post('/tasty-secret-admin/home/update', [HomeController::class, 'updateAdmin']);
 
-// Memproses tombol "Simpan Perubahan" form Tentang ke database
+// Kelola Halaman Tentang
+Route::get('/tasty-secret-admin/tentang', [TentangController::class, 'editAdmin']);
 Route::post('/tasty-secret-admin/tentang/update', [TentangController::class, 'updateAdmin']);
+
+// Kelola Halaman Berita (CRUD Lengkap)
+Route::get('/tasty-secret-admin/berita', [BeritaController::class, 'indexAdmin']);
+Route::get('/tasty-secret-admin/berita/tambah', [BeritaController::class, 'createAdmin']);
+Route::post('/tasty-secret-admin/berita/simpan', [BeritaController::class, 'storeAdmin']);
+Route::get('/tasty-secret-admin/berita/edit/{id}', [BeritaController::class, 'editAdmin']);
+Route::post('/tasty-secret-admin/berita/update/{id}', [BeritaController::class, 'updateAdmin']);
+Route::get('/tasty-secret-admin/berita/hapus/{id}', [BeritaController::class, 'destroyAdmin']);

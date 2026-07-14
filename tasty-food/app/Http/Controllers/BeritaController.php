@@ -7,24 +7,82 @@ use App\Models\Berita;
 
 class BeritaController extends Controller
 {
-    // 1. Menampilkan Semua Berita di Halaman Berita Kami
+    // --- HALAMAN UTAMA / DEPAN ---
+    
+    // Tampil semua berita di web depan
     public function index()
     {
-        $semuaBerita = Berita::all();
-        return view('berita', compact('semuaBerita'));
+        $beritas = Berita::latest()->get();
+        return view('berita', compact('beritas'));
     }
 
-    // 2. Menampilkan Berita Pilihan di Halaman Home (Misal ambil 3 berita terbaru)
-    public function home()
-    {
-        $beritaHome = Berita::latest()->take(3)->get();
-        return view('home', compact('beritaHome'));
-    }
-
-    // 3. Menampilkan Detail Satu Berita Khusus saat "Baca Selengkapnya" diklik
+    // Tampil detail baca berita
     public function show($id)
     {
-        $berita = Berita::findOrFail($id); // Jika ID gak ada, otomatis error 404
+        $berita = Berita::findOrFail($id);
         return view('detail-berita', compact('berita'));
+    }
+
+
+    // --- PANEL ADMIN (CMS) ---
+
+    // Halaman List Berita di Admin
+    public function indexAdmin()
+    {
+        $beritas = Berita::latest()->get();
+        return view('admin.berita.index', compact('beritas'));
+    }
+
+    // Halaman Form Tambah Berita
+    public function createAdmin()
+    {
+        return view('admin.berita.create');
+    }
+
+    // Proses Simpan Berita Baru
+    public function storeAdmin(Request $request)
+    {
+        $request->validate([
+            'judul' => 'required',
+            'deskripsi_pendek' => 'required',
+            'detail_berita' => 'required',
+            'gambar' => 'required',
+        ]);
+
+        Berita::create($request->all());
+
+        return redirect('/tasty-secret-admin/berita')->with('sukses', 'Berita baru berhasil ditambahkan!');
+    }
+
+    // Halaman Form Edit Berita
+    public function editAdmin($id)
+    {
+        $berita = Berita::findOrFail($id);
+        return view('admin.berita.edit', compact('berita'));
+    }
+
+    // Proses Update Berita
+    public function updateAdmin(Request $request, $id)
+    {
+        $request->validate([
+            'judul' => 'required',
+            'deskripsi_pendek' => 'required',
+            'detail_berita' => 'required',
+            'gambar' => 'required',
+        ]);
+
+        $berita = Berita::findOrFail($id);
+        $berita->update($request->all());
+
+        return redirect('/tasty-secret-admin/berita')->with('sukses', 'Berita berhasil diperbarui!');
+    }
+
+    // Proses Hapus Berita
+    public function destroyAdmin($id)
+    {
+        $berita = Berita::findOrFail($id);
+        $berita->delete();
+
+        return redirect()->back()->with('sukses', 'Berita berhasil dihapus!');
     }
 }

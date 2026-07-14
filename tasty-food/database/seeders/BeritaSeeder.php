@@ -2,27 +2,79 @@
 
 namespace Database\Seeders;
 
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Berita;
 
 class BeritaSeeder extends Seeder
 {
+    /**
+     * Run the database seeds.
+     */
     public function run(): void
     {
-        // Berita Contoh 1
+        // Menghapus data berita lama agar tidak double saat di-seed ulang
+        Berita::truncate();
+
+        // 1. DATA BERITA UTAMA (Paling atas di mockup)
         Berita::create([
-            'judul' => 'Kelezatan Makanan Khas Tasty Food yang Menggugah Selera',
-            'ringkasan' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Rasa autentik yang bikin nagih.',
-            'isi' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
-            'gambar' => 'berita1.jpg'
+            'judul' => 'Apa Saja Makanan Khas Nusantara?',
+            'deskripsi_pendek' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ornare, augue eu rutrum commodo, dui diam convallis arcu, eget consectetur ex sem eget lacus. Nullam vitae dignissim neque, vel luctus ex. Fusce sit amet viverra ante.',
+            'detail_berita' => "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ornare, augue eu rutrum commodo, dui diam convallis arcu, eget consectetur ex sem eget lacus. Nullam vitae dignissim neque, vel luctus ex. Fusce sit amet viverra ante.\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ornare, augue eu rutrum commodo, dui diam convallis arcu, eget consectetur ex sem eget lacus. Nullam vitae dignissim neque, vel luctus ex. Fusce sit amet viverra ante.",
+            'gambar' => 'fathul-abrar-T-qI_MI2EMA-unsplash.jpg', // Silahkan ganti nama file aset lu nanti
         ]);
 
-        // Berita Contoh 2
-        Berita::create([
-            'judul' => 'Rahasia Dapur Tasty Food: Bahan Segar Pilihan Utama',
-            'ringkasan' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Kualitas bahan selalu dijaga.',
-            'isi' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cursus turpis massa tincidunt dui ut ornare lectus. Id porta nibh venenatis cras sed felis eget. Tortor vitae purus faucibus ornare suspendisse sed nisi lacus sed. Platea dictumst quisque sagittis purus sit amet volutpat consequat.',
-            'gambar' => 'berita2.jpg'
-        ]);
+        // 2. DATA GRID BERITA LAINNYA (8 Card di bawahnya)
+        $beritaLainnya = [
+            [
+                'judul' => 'LOREM IPSUM',
+                'deskripsi' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ornare, augue eu.',
+                'gambar' => 'sanket-shah-SVA7TyHxojY-unsplash.jpg'
+            ],
+            [
+                'judul' => 'LOREM IPSUM',
+                'deskripsi' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ornare, augue eu.',
+                'gambar' => 'sebastian-coman-photography-eBmyH7oO5wY-unsplash.jpg'
+            ],
+            [
+                'judul' => 'LOREM IPSUM',
+                'deskripsi' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ornare, augue eu.',
+                'gambar' => 'jimmy-dean-Jvw3pxgeiZw-unsplash.jpg'
+            ],
+            [
+                'judul' => 'LOREM IPSUM',
+                'deskripsi' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ornare, augue eu.',
+                'gambar' => 'luisa-brimble-HvXEbkcXjSk-unsplash.jpg'
+            ],
+            [
+                'judul' => 'LOREM IPSUM',
+                'deskripsi' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ornare, augue eu.',
+                'gambar' => 'sanket-shah-SVA7TyHxojY-unsplash.jpg'
+            ],
+            [
+                'judul' => 'LOREM IPSUM',
+                'deskripsi' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ornare, augue eu.',
+                'gambar' => 'sebastian-coman-photography-eBmyH7oO5wY-unsplash.jpg'
+            ],
+            [
+                'judul' => 'LOREM IPSUM',
+                'deskripsi' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ornare, augue eu.',
+                'gambar' => 'jimmy-dean-Jvw3pxgeiZw-unsplash.jpg'
+            ],
+            [
+                'judul' => 'LOREM IPSUM',
+                'deskripsi' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ornare, augue eu.',
+                'gambar' => 'luisa-brimble-HvXEbkcXjSk-unsplash.jpg'
+            ],
+        ];
+
+        foreach ($beritaLainnya as $item) {
+            Berita::create([
+                'judul' => $item['judul'],
+                'deskripsi_pendek' => $item['deskripsi'],
+                'detail_berita' => $item['deskripsi'] . ' Taruh isi lengkap konten berita di sini jika halaman detail dibuka.',
+                'gambar' => $item['gambar'],
+            ]);
+        }
     }
 }

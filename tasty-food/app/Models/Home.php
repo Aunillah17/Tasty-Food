@@ -4,7 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Berita extends Model
+class Home extends Model
 {
+    // Tambahkan properti guarded ini di dalam class
     protected $guarded = [];
 }

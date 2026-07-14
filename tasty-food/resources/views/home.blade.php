@@ -1,7 +1,5 @@
 @extends('layouts.main')
-
 @section('title', 'Home')
-
 @section('content')
 <style>
     /* Aksen tombol & teks oranye kekuningan sesuai mockup */
@@ -29,7 +27,7 @@
     .text-accent-yellow:hover {
         color: #f59e0b;
     }
-    
+   
     /* Garis dekoratif abu-abu tipis di atas judul mockup */
     .title-line {
         width: 60px;
@@ -43,10 +41,9 @@
         background-color: #000000;
         margin: 20px auto 0 auto;
     }
-
     /* Styling Section Tentang Kami & 4 Card Bulat */
     .about-bg-section {
-        background: url('{{ asset('assets/images/img-4.png') }}') center/cover no-repeat;
+        background: url('{{ asset('assets/images/' . $home->hero_img) }}') center/cover no-repeat;
         padding: 100px 0;
         position: relative;
     }
@@ -62,11 +59,11 @@
         z-index: 2;
     }
     .card-section-bg {
-    background-image: url("{{ asset('assets/images/Group 70.png') }}");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    position: relative;
+        background-image: url("{{ asset('assets/images/Group 70.png') }}");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        position: relative;
     }
     .food-card {
         background: #ffffff;
@@ -90,7 +87,6 @@
         border: 5px solid #ffffff;
         box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     }
-
     /* Styling Grid Galeri agar presisi kotak */
     .gallery-img-wrapper {
         aspect-ratio: 1 / 1;
@@ -109,24 +105,22 @@
 </style>
 
 <!-- ==========================================================================
-   1. HERO SECTION (Teks Kiri, Gambar Kanan - Responsif HP)
+   1. HERO SECTION (Teks Kiri, Gambar Kanan)
    ========================================================================== -->
 <section class="py-5 mb-5">
     <div class="container">
         <div class="row align-items-center g-5">
             <div class="col-lg-6 order-2 order-lg-1">
                 <div class="title-line"></div>
-                <h1 class="display-4 fw-light text-uppercase tracking-wide text-dark mb-1">Healthy</h1>
-                <h1 class="display-3 fw-bold text-uppercase text-dark mb-4" style="letter-spacing: -1px;">Tasty Food</h1>
+                <h1 class="display-4 fw-light text-uppercase tracking-wide text-dark mb-1">{{ $home->hero_judul_atas }}</h1>
+                <h1 class="display-3 fw-bold text-uppercase text-dark mb-4" style="letter-spacing: -1px;">{{ $home->hero_judul_bawah }}</h1>
                 <p class="text-muted mb-5 lead-sm" style="max-width: 500px; line-height: 1.8;">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sed lorem dictum, 
-                    varius justo id, interdum diam. In hac habitasse platea dictumst. Fusce id lorem vel eros elementum.
+                    {{ $home->hero_deskripsi }}
                 </p>
                 <a href="{{ url('/tentang') }}" class="btn btn-dark-custom">Tentang Kami</a>
             </div>
             <div class="col-lg-6 order-1 order-lg-2 text-center text-lg-end overflow-hidden">
-                <!-- Gambar melengkung besar di sudut kanan -->
-                <img src="{{ asset('assets/images/img-4.png') }}" alt="Healthy Tasty Food" class="img-fluid" style="max-height: 550px; object-fit: contain;">
+                <img src="{{ asset('assets/images/' . $home->hero_img) }}" alt="Healthy Tasty Food" class="img-fluid" style="max-height: 550px; object-fit: contain;">
             </div>
         </div>
     </div>
@@ -141,9 +135,7 @@
         <div class="row justify-content-center">
             <div class="col-lg-7">
                 <p class="text-muted" style="line-height: 1.8;">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sit amet lectus convallis, 
-                    interdum diam non, interdum diam. In hac habitasse platea dictumst. 
-                    Sed feugiat elementum dui vel vulputate.
+                    {{ $home->about_preview }}
                 </p>
                 <div class="title-line-center"></div>
             </div>
@@ -158,33 +150,33 @@
             <!-- Card 1 -->
             <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
                 <div class="food-card">
-                    <img src="{{ asset('assets/images/img-1.png') }}" alt="Menu 1">
-                    <h5 class="fw-bold text-uppercase mb-3">Lorem Ipsum</h5>
-                    <p class="text-muted small mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi efficitur maecenas.</p>
+                    <img src="{{ asset('assets/images/' . $home->card1_img) }}" alt="Menu 1">
+                    <h5 class="fw-bold text-uppercase mb-3">{{ $home->card1_judul }}</h5>
+                    <p class="text-muted small mb-0">{{ $home->card1_deskripsi }}</p>
                 </div>
             </div>
             <!-- Card 2 -->
             <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
                 <div class="food-card">
-                    <img src="{{ asset('assets/images/img-2.png') }}" alt="Menu 2">
-                    <h5 class="fw-bold text-uppercase mb-3">Lorem Ipsum</h5>
-                    <p class="text-muted small mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi efficitur maecenas.</p>
+                    <img src="{{ asset('assets/images/' . $home->card2_img) }}" alt="Menu 2">
+                    <h5 class="fw-bold text-uppercase mb-3">{{ $home->card2_judul }}</h5>
+                    <p class="text-muted small mb-0">{{ $home->card2_deskripsi }}</p>
                 </div>
             </div>
             <!-- Card 3 -->
             <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
                 <div class="food-card">
-                    <img src="{{ asset('assets/images/img-3.png') }}" alt="Menu 3">
-                    <h5 class="fw-bold text-uppercase mb-3">Lorem Ipsum</h5>
-                    <p class="text-muted small mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi efficitur maecenas.</p>
+                    <img src="{{ asset('assets/images/' . $home->card3_img) }}" alt="Menu 3">
+                    <h5 class="fw-bold text-uppercase mb-3">{{ $home->card3_judul }}</h5>
+                    <p class="text-muted small mb-0">{{ $home->card3_deskripsi }}</p>
                 </div>
             </div>
             <!-- Card 4 -->
             <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
                 <div class="food-card">
-                    <img src="{{ asset('assets/images/img-4.png') }}" alt="Menu 4">
-                    <h5 class="fw-bold text-uppercase mb-3">Lorem Ipsum</h5>
-                    <p class="text-muted small mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi efficitur maecenas.</p>
+                    <img src="{{ asset('assets/images/' . $home->card4_img) }}" alt="Menu 4">
+                    <h5 class="fw-bold text-uppercase mb-3">{{ $home->card4_judul }}</h5>
+                    <p class="text-muted small mb-0">{{ $home->card4_deskripsi }}</p>
                 </div>
             </div>
         </div>
@@ -192,12 +184,12 @@
 </section>
 
 <!-- ==========================================================================
-   3. BERITA KAMI SECTION (Pindah Halaman Saat Diklik)
+   3. BERITA KAMI SECTION
    ========================================================================== -->
 <section class="py-5 my-5">
     <div class="container">
         <h2 class="text-uppercase fw-bold text-dark text-center mb-5">Berita Kami</h2>
-        
+       
         <div class="row g-4">
             <!-- Berita Utama (Kiri Gede) -->
             <div class="col-lg-6">
@@ -215,7 +207,7 @@
                     </div>
                 </div>
             </div>
-            
+           
             <!-- Berita Sampingan Grid (Kanan - 4 Items Mini) -->
             <div class="col-lg-6">
                 <div class="row g-4">
@@ -282,12 +274,12 @@
 </section>
 
 <!-- ==========================================================================
-   4. GALERI KAMI SECTION (Grid Sesuai Urutan Kamu)
+   4. GALERI KAMI SECTION
    ========================================================================== -->
 <section class="py-5 my-5">
     <div class="container text-center">
         <h2 class="text-uppercase fw-bold text-dark mb-5">Galeri Kami</h2>
-        
+       
         <div class="row g-4 mb-5">
             <!-- Foto 1 -->
             <div class="col-lg-4 col-md-6">
@@ -326,7 +318,7 @@
                 </div>
             </div>
         </div>
-        
+       
         <!-- Tombol Lihat Lebih Banyak -->
         <a href="{{ url('/galeri') }}" class="btn btn-dark-custom px-5">Lihat Lebih Banyak</a>
     </div>
