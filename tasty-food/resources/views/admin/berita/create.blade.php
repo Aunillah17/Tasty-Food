@@ -19,7 +19,7 @@
             </div>
             <div class="col-md-4">
                 <label class="form-label fw-bold text-dark text-uppercase small">Nama File Gambar</label>
-                <input type="text" name="gambar" class="form-control form-control-custom" placeholder="Contoh: berita1.jpg" required>
+                <input type="text" name="gambar" class="form-control form-control-custom" placeholder="Contoh: berita1.avif" required>
             </div>
             <div class="col-md-12">
                 <label class="form-label fw-bold text-dark text-uppercase small">Deskripsi Pendek (Preview Halaman Depan)</label>

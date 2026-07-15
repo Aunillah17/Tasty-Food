@@ -225,11 +225,11 @@
                     <div class="d-flex align-items-center">
                         <!-- Menggunakan Aset Facebook Resmi Perusahaan -->
                         <a href="https://facebook.com" class="social-icon-box" target="_blank">
-                            <img src="{{ asset('assets/images/001-facebook@2x.png') }}" alt="Facebook" class="social-img-asset">
+                            <img src="{{ asset('assets/images/001-facebook@2x.avif') }}" alt="Facebook" class="social-img-asset">
                         </a>
                         <!-- Menggunakan Aset Twitter Resmi Perusahaan -->
                         <a href="https://twitter.com" class="social-icon-box" target="_blank">
-                            <img src="{{ asset('assets/images/002-twitter@2x.png') }}" alt="Twitter" class="social-img-asset">
+                            <img src="{{ asset('assets/images/002-twitter@2x.avif') }}" alt="Twitter" class="social-img-asset">
                         </a>
                     </div>
                 </div>
@@ -262,17 +262,17 @@
                     <ul class="list-unstyled footer-text d-flex flex-column gap-3">
                         <!-- Kontak: Email menggunakan ic_markunread -->
                         <li class="contact-item">
-                            <img src="{{ asset('assets/images/ic_markunread_24px@2x.png') }}" alt="Email Icon" class="contact-img-asset">
+                            <img src="{{ asset('assets/images/ic_markunread_24px@2x.avif') }}" alt="Email Icon" class="contact-img-asset">
                             <span>tastyfood@gmail.com</span>
                         </li>
                         <!-- Kontak: Telepon menggunakan ic_call -->
                         <li class="contact-item">
-                            <img src="{{ asset('assets/images/ic_call_24px@2x.png') }}" alt="Phone Icon" class="contact-img-asset">
+                            <img src="{{ asset('assets/images/ic_call_24px@2x.avif') }}" alt="Phone Icon" class="contact-img-asset">
                             <span>+62 812 3456 7890</span>
                         </li>
                         <!-- Kontak: Lokasi menggunakan ic_place -->
                         <li class="contact-item">
-                            <img src="{{ asset('assets/images/ic_place_24px@2x.png') }}" alt="Location Icon" class="contact-img-asset">
+                            <img src="{{ asset('assets/images/ic_place_24px@2x.avif') }}" alt="Location Icon" class="contact-img-asset">
                             <span>Kota Bandung, Jawa Barat</span>
                         </li>
                     </ul>

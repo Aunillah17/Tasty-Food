@@ -47,7 +47,7 @@
                 <div class="col-md-6">
                     <label class="form-label fw-bold text-dark text-uppercase small">Nama File Gambar Hero</label>
                     <input type="text" name="hero_img" class="form-control form-control-custom" value="{{ $home->hero_img }}" required>
-                    <div class="form-text text-muted small mt-1">Gunakan nama file yang ada di folder public, contoh: <code>img-4.png</code></div>
+                    <div class="form-text text-muted small mt-1">Gunakan nama file yang ada di folder public, contoh: <code>img-4.avif</code></div>
                 </div>
                 <div class="col-md-6">
                     <label class="form-label fw-bold text-dark text-uppercase small">Ringkasan Teks Tentang Kami</label>

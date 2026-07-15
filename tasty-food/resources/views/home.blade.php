@@ -59,7 +59,7 @@
         z-index: 2;
     }
     .card-section-bg {
-        background-image: url("{{ asset('assets/images/Group 70.png') }}");
+        background-image: url("{{ asset('assets/images/Group 70.avif') }}");
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
@@ -194,7 +194,7 @@
             <!-- Berita Utama (Kiri Gede) -->
             <div class="col-lg-6">
                 <div class="card h-100 border-0 shadow-sm" style="border-radius: 12px; overflow: hidden;">
-                    <img src="{{ asset('assets/images/fathul-abrar-T-qI_MI2EMA-unsplash.jpg') }}" class="card-img-top" alt="Berita Utama" style="height: 340px; object-fit: cover;">
+                    <img src="{{ asset('assets/images/fathul-abrar-T-qI_MI2EMA-unsplash.avif') }}" class="card-img-top" alt="Berita Utama" style="height: 340px; object-fit: cover;">
                     <div class="card-body p-4 d-flex flex-column justify-content-between">
                         <div>
                             <h4 class="fw-bold text-uppercase mb-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit</h4>
@@ -214,7 +214,7 @@
                     <!-- Sampingan 1 -->
                     <div class="col-md-6">
                         <div class="card h-100 border-0 shadow-sm" style="border-radius: 12px; overflow: hidden;">
-                            <img src="{{ asset('assets/images/sanket-shah-SVA7TyHxojY-unsplash.jpg') }}" class="card-img-top" alt="Berita" style="height: 160px; object-fit: cover;">
+                            <img src="{{ asset('assets/images/sanket-shah-SVA7TyHxojY-unsplash.avif') }}" class="card-img-top" alt="Berita" style="height: 160px; object-fit: cover;">
                             <div class="card-body p-3">
                                 <h6 class="fw-bold text-uppercase mb-2">Lorem Ipsum</h6>
                                 <p class="text-muted small mb-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
@@ -228,7 +228,7 @@
                     <!-- Sampingan 2 -->
                     <div class="col-md-6">
                         <div class="card h-100 border-0 shadow-sm" style="border-radius: 12px; overflow: hidden;">
-                            <img src="{{ asset('assets/images/sebastian-coman-photography-eBmyH7oO5wY-unsplash.jpg') }}" class="card-img-top" alt="Berita" style="height: 160px; object-fit: cover;">
+                            <img src="{{ asset('assets/images/sebastian-coman-photography-eBmyH7oO5wY-unsplash.avif') }}" class="card-img-top" alt="Berita" style="height: 160px; object-fit: cover;">
                             <div class="card-body p-3">
                                 <h6 class="fw-bold text-uppercase mb-2">Lorem Ipsum</h6>
                                 <p class="text-muted small mb-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
@@ -242,7 +242,7 @@
                     <!-- Sampingan 3 -->
                     <div class="col-md-6">
                         <div class="card h-100 border-0 shadow-sm" style="border-radius: 12px; overflow: hidden;">
-                            <img src="{{ asset('assets/images/jimmy-dean-Jvw3pxgeiZw-unsplash.jpg') }}" class="card-img-top" alt="Berita" style="height: 160px; object-fit: cover;">
+                            <img src="{{ asset('assets/images/jimmy-dean-Jvw3pxgeiZw-unsplash.avif') }}" class="card-img-top" alt="Berita" style="height: 160px; object-fit: cover;">
                             <div class="card-body p-3">
                                 <h6 class="fw-bold text-uppercase mb-2">Lorem Ipsum</h6>
                                 <p class="text-muted small mb-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
@@ -256,7 +256,7 @@
                     <!-- Sampingan 4 -->
                     <div class="col-md-6">
                         <div class="card h-100 border-0 shadow-sm" style="border-radius: 12px; overflow: hidden;">
-                            <img src="{{ asset('assets/images/luisa-brimble-HvXEbkcXjSk-unsplash.jpg') }}" class="card-img-top" alt="Berita" style="height: 160px; object-fit: cover;">
+                            <img src="{{ asset('assets/images/luisa-brimble-HvXEbkcXjSk-unsplash.avif') }}" class="card-img-top" alt="Berita" style="height: 160px; object-fit: cover;">
                             <div class="card-body p-3">
                                 <h6 class="fw-bold text-uppercase mb-2">Lorem Ipsum</h6>
                                 <p class="text-muted small mb-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
@@ -284,37 +284,37 @@
             <!-- Foto 1 -->
             <div class="col-lg-4 col-md-6">
                 <div class="gallery-img-wrapper">
-                    <img src="{{ asset('assets/images/brooke-lark-oaz0raysASk-unsplash.jpg') }}" alt="Galeri 1">
+                    <img src="{{ asset('assets/images/brooke-lark-oaz0raysASk-unsplash.avif') }}" alt="Galeri 1">
                 </div>
             </div>
             <!-- Foto 2 -->
             <div class="col-lg-4 col-md-6">
                 <div class="gallery-img-wrapper">
-                    <img src="{{ asset('assets/images/ella-olsson-mmnKI8kMxpc-unsplash.jpg') }}" alt="Galeri 2">
+                    <img src="{{ asset('assets/images/ella-olsson-mmnKI8kMxpc-unsplash.avif') }}" alt="Galeri 2">
                 </div>
             </div>
             <!-- Foto 3 -->
             <div class="col-lg-4 col-md-6">
                 <div class="gallery-img-wrapper">
-                    <img src="{{ asset('assets/images/eiliv-aceron-ZuIDLSz3XLg-unsplash.jpg') }}" alt="Galeri 3">
+                    <img src="{{ asset('assets/images/eiliv-aceron-ZuIDLSz3XLg-unsplash.avif') }}" alt="Galeri 3">
                 </div>
             </div>
             <!-- Foto 4 -->
             <div class="col-lg-4 col-md-6">
                 <div class="gallery-img-wrapper">
-                    <img src="{{ asset('assets/images/jonathan-borba-Gkc_xM3VY34-unsplash.jpg') }}" alt="Galeri 4">
+                    <img src="{{ asset('assets/images/jonathan-borba-Gkc_xM3VY34-unsplash.avif') }}" alt="Galeri 4">
                 </div>
             </div>
             <!-- Foto 5 -->
             <div class="col-lg-4 col-md-6">
                 <div class="gallery-img-wrapper">
-                    <img src="{{ asset('assets/images/mariana-medvedeva-iNwCO9ycBlc-unsplash.jpg') }}" alt="Galeri 5">
+                    <img src="{{ asset('assets/images/mariana-medvedeva-iNwCO9ycBlc-unsplash.avif') }}" alt="Galeri 5">
                 </div>
             </div>
             <!-- Foto 6 -->
             <div class="col-lg-4 col-md-6">
                 <div class="gallery-img-wrapper">
-                    <img src="{{ asset('assets/images/monika-grabkowska-P1aohbiT-EY-unsplash.jpg') }}" alt="Galeri 6">
+                    <img src="{{ asset('assets/images/monika-grabkowska-P1aohbiT-EY-unsplash.avif') }}" alt="Galeri 6">
                 </div>
             </div>
         </div>

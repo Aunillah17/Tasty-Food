@@ -6,7 +6,7 @@
 <style>
     /* Styling Banner Atas (Header) - Seragam dengan halaman lain */
     .contact-header-banner {
-        background: url('{{ asset('assets/images/Group 70.png') }}') center/cover no-repeat;
+        background: url('{{ asset('assets/images/Group 70.avif') }}') center/cover no-repeat;
         height: 400px;
         position: relative;
         margin-top: -110px; /* Diangkat agar pas di bawah navbar transparan */
@@ -84,7 +84,7 @@
 </style>
 
 <!-- ==========================================================================
-   1. HEADER BANNER (Latar Belakang Group 70.png)
+   1. HEADER BANNER (Latar Belakang Group 70.avif)
    ========================================================================== -->
 <section class="contact-header-banner mb-5">
     <div class="container">
@@ -132,7 +132,7 @@
             <!-- Email Info -->
             <div class="col-md-4">
                 <div class="d-flex flex-column align-items-center">
-                    <img src="{{ asset('assets/images/Group 66@2x.png') }}" alt="Email Icon" class="info-icon-box">
+                    <img src="{{ asset('assets/images/Group 66@2x.avif') }}" alt="Email Icon" class="info-icon-box">
                     <h6 class="fw-bold text-uppercase text-dark mb-2" style="letter-spacing: 0.5px;">Email</h6>
                     <p class="text-muted small">tastyfood@gmail.com</p>
                 </div>
@@ -140,7 +140,7 @@
             <!-- Phone Info -->
             <div class="col-md-4">
                 <div class="d-flex flex-column align-items-center">
-                    <img src="{{ asset('assets/images/Group 67@2x.png') }}" alt="Phone Icon" class="info-icon-box">
+                    <img src="{{ asset('assets/images/Group 67@2x.avif') }}" alt="Phone Icon" class="info-icon-box">
                     <h6 class="fw-bold text-uppercase text-dark mb-2" style="letter-spacing: 0.5px;">Phone</h6>
                     <p class="text-muted small">+62 812 3456 7890</p>
                 </div>
@@ -148,7 +148,7 @@
             <!-- Location Info -->
             <div class="col-md-4">
                 <div class="d-flex flex-column align-items-center">
-                    <img src="{{ asset('assets/images/Group 68@2x.png') }}" alt="Location Icon" class="info-icon-box">
+                    <img src="{{ asset('assets/images/Group 68@2x.avif') }}" alt="Location Icon" class="info-icon-box">
                     <h6 class="fw-bold text-uppercase text-dark mb-2" style="letter-spacing: 0.5px;">Location</h6>
                     <p class="text-muted small">Kota Bandung, Jawa Barat</p>
                 </div>

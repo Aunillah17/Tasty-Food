@@ -6,7 +6,7 @@
 <style>
     /* Styling Banner Atas (Header) - Seragam dengan halaman lain */
     .gallery-header-banner {
-        background: url('{{ asset('assets/images/Group 70.png') }}') center/cover no-repeat;
+        background: url('{{ asset('assets/images/Group 70.avif') }}') center/cover no-repeat;
         height: 400px;
         position: relative;
         margin-top: -110px; /* Diangkat agar serasi di bawah navbar transparan */
@@ -77,7 +77,7 @@
 </style>
 
 <!-- ==========================================================================
-   1. HEADER BANNER (Latar Belakang Group 70.png)
+   1. HEADER BANNER (Latar Belakang Group 70.avif)
    ========================================================================== -->
 <section class="gallery-header-banner mb-5">
     <div class="container">
@@ -98,19 +98,19 @@
                     <div class="carousel-inner">
                         <!-- Slide Foto 1 (Aktif Pertama) -->
                         <div class="carousel-item active">
-                            <img src="{{ asset('assets/images/ella-olsson-mmnKI8kMxpc-unsplash.jpg') }}" class="d-block w-100" alt="Slider 1">
+                            <img src="{{ asset('assets/images/ella-olsson-mmnKI8kMxpc-unsplash.avif') }}" class="d-block w-100" alt="Slider 1">
                         </div>
                         <!-- Slide Foto 2 -->
                         <div class="carousel-item">
-                            <img src="{{ asset('assets/images/jonathan-borba-Gkc_xM3VY34-unsplash.jpg') }}" class="d-block w-100" alt="Slider 2">
+                            <img src="{{ asset('assets/images/jonathan-borba-Gkc_xM3VY34-unsplash.avif') }}" class="d-block w-100" alt="Slider 2">
                         </div>
                         <!-- Slide Foto 3 -->
                         <div class="carousel-item">
-                            <img src="{{ asset('assets/images/mariana-medvedeva-iNwCO9ycBlc-unsplash.jpg') }}" class="d-block w-100" alt="Slider 3">
+                            <img src="{{ asset('assets/images/mariana-medvedeva-iNwCO9ycBlc-unsplash.avif') }}" class="d-block w-100" alt="Slider 3">
                         </div>
                         <!-- Slide Foto 4 -->
                         <div class="carousel-item">
-                            <img src="{{ asset('assets/images/michele-blackwell-rAyCBQTH7ws-unsplash.jpg') }}" class="d-block w-100" alt="Slider 4">
+                            <img src="{{ asset('assets/images/michele-blackwell-rAyCBQTH7ws-unsplash.avif') }}" class="d-block w-100" alt="Slider 4">
                         </div>
                     </div>
                     
@@ -141,75 +141,75 @@
             <!-- Baris 1 - Foto 1 -->
             <div class="col-xl-3 col-md-6">
                 <div class="gallery-grid-wrapper">
-                    <img src="{{ asset('assets/images/anh-nguyen-kcA-c3f_3FE-unsplash.jpg') }}" alt="Galeri 1">
+                    <img src="{{ asset('assets/images/anh-nguyen-kcA-c3f_3FE-unsplash.avif') }}" alt="Galeri 1">
                 </div>
             </div>
             <!-- Baris 1 - Foto 2 -->
             <div class="col-xl-3 col-md-6">
                 <div class="gallery-grid-wrapper">
-                    <img src="{{ asset('assets/images/anna-pelzer-IGfIGP5ONV0-unsplash.jpg') }}" alt="Galeri 2">
+                    <img src="{{ asset('assets/images/anna-pelzer-IGfIGP5ONV0-unsplash.avif') }}" alt="Galeri 2">
                 </div>
             </div>
             <!-- Baris 1 - Foto 3 -->
             <div class="col-xl-3 col-md-6">
                 <div class="gallery-grid-wrapper">
-                    <img src="{{ asset('assets/images/brooke-lark-1Rm9GLHV0UA-unsplash.jpg') }}" alt="Galeri 3">
+                    <img src="{{ asset('assets/images/brooke-lark-1Rm9GLHV0UA-unsplash.avif') }}" alt="Galeri 3">
                 </div>
             </div>
             <!-- Baris 1 - Foto 4 -->
             <div class="col-xl-3 col-md-6">
                 <div class="gallery-grid-wrapper">
-                    <img src="{{ asset('assets/images/brooke-lark-nBtmglfY0HU-unsplash.jpg') }}" alt="Galeri 4">
+                    <img src="{{ asset('assets/images/brooke-lark-nBtmglfY0HU-unsplash.avif') }}" alt="Galeri 4">
                 </div>
             </div>
 
             <!-- Baris 2 - Foto 5 -->
             <div class="col-xl-3 col-md-6">
                 <div class="gallery-grid-wrapper">
-                    <img src="{{ asset('assets/images/brooke-lark-oaz0raysASk-unsplash.jpg') }}" alt="Galeri 5">
+                    <img src="{{ asset('assets/images/brooke-lark-oaz0raysASk-unsplash.avif') }}" alt="Galeri 5">
                 </div>
             </div>
             <!-- Baris 2 - Foto 6 -->
             <div class="col-xl-3 col-md-6">
                 <div class="gallery-grid-wrapper">
-                    <img src="{{ asset('assets/images/eiliv-aceron-ZuIDLSz3XLg-unsplash.jpg') }}" alt="Galeri 6">
+                    <img src="{{ asset('assets/images/eiliv-aceron-ZuIDLSz3XLg-unsplash.avif') }}" alt="Galeri 6">
                 </div>
             </div>
             <!-- Baris 2 - Foto 7 -->
             <div class="col-xl-3 col-md-6">
                 <div class="gallery-grid-wrapper">
-                    <img src="{{ asset('assets/images/fathul-abrar-T-qI_MI2EMA-unsplash.jpg') }}" alt="Galeri 7">
+                    <img src="{{ asset('assets/images/fathul-abrar-T-qI_MI2EMA-unsplash.avif') }}" alt="Galeri 7">
                 </div>
             </div>
             <!-- Baris 2 - Foto 8 -->
             <div class="col-xl-3 col-md-6">
                 <div class="gallery-grid-wrapper">
-                    <img src="{{ asset('assets/images/jimmy-dean-Jvw3pxgeiZw-unsplash.jpg') }}" alt="Galeri 8">
+                    <img src="{{ asset('assets/images/jimmy-dean-Jvw3pxgeiZw-unsplash.avif') }}" alt="Galeri 8">
                 </div>
             </div>
 
             <!-- Baris 3 - Foto 9 -->
             <div class="col-xl-3 col-md-6">
                 <div class="gallery-grid-wrapper">
-                    <img src="{{ asset('assets/images/luisa-brimble-HvXEbkcXjSk-unsplash.jpg') }}" alt="Galeri 9">
+                    <img src="{{ asset('assets/images/luisa-brimble-HvXEbkcXjSk-unsplash.avif') }}" alt="Galeri 9">
                 </div>
             </div>
             <!-- Baris 3 - Foto 10 -->
             <div class="col-xl-3 col-md-6">
                 <div class="gallery-grid-wrapper">
-                    <img src="{{ asset('assets/images/sebastian-coman-photography-eBmyH7oO5wY-unsplash.jpg') }}" alt="Galeri 10">
+                    <img src="{{ asset('assets/images/sebastian-coman-photography-eBmyH7oO5wY-unsplash.avif') }}" alt="Galeri 10">
                 </div>
             </div>
             <!-- Baris 3 - Foto 11 -->
             <div class="col-xl-3 col-md-6">
                 <div class="gallery-grid-wrapper">
-                    <img src="{{ asset('assets/images/sanket-shah-SVA7TyHxojY-unsplash.jpg') }}" alt="Galeri 11">
+                    <img src="{{ asset('assets/images/sanket-shah-SVA7TyHxojY-unsplash.avif') }}" alt="Galeri 11">
                 </div>
             </div>
             <!-- Baris 3 - Foto 12 -->
             <div class="col-xl-3 col-md-6">
                 <div class="gallery-grid-wrapper">
-                    <img src="{{ asset('assets/images/monika-grabkowska-P1aohbiT-EY-unsplash.jpg') }}" alt="Galeri 12">
+                    <img src="{{ asset('assets/images/monika-grabkowska-P1aohbiT-EY-unsplash.avif') }}" alt="Galeri 12">
                 </div>
             </div>
         </div>
