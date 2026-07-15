@@ -8,14 +8,13 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
-    
+   
     <style>
         body {
             font-family: 'Montserrat', sans-serif;
             background-color: #ffffff;
             overflow-x: hidden;
         }
-
         /* --- NAVBAR BASE STYLING --- */
         .navbar-custom {
             background-color: transparent;
@@ -23,7 +22,7 @@
             position: relative;
             z-index: 10000 !important;
         }
-        
+       
         /* Default Brand (Logo TASTY FOOD) */
         .navbar-brand-custom {
             font-weight: 800;
@@ -32,7 +31,7 @@
             letter-spacing: 1px;
             transition: color 0.3s ease;
         }
-        
+       
         /* Default Link Menu (Desktop) */
         .nav-link-custom {
             font-weight: 700;
@@ -46,7 +45,6 @@
         .nav-link-custom:hover {
             color: #fbbf24 !important;
         }
-
         /* --- BURGER MENU BASE STYLING --- */
         .navbar-toggler {
             border: 2px solid #000000 !important;
@@ -57,9 +55,8 @@
             transition: all 0.3s ease;
         }
         .navbar-toggler-icon {
-            filter: invert(0); 
+            filter: invert(0);
         }
-
         /* --- AUTOMATIC COLOR ADAPTATION FOR SUBPAGES (NON-HOME) --- */
         @unless(Request::is('/'))
             .navbar-brand-custom {
@@ -69,13 +66,12 @@
                 border-color: #ffffff !important;
             }
             .navbar-toggler-icon {
-                filter: invert(1) brightness(2); 
+                filter: invert(1) brightness(2);
             }
             .nav-link-custom {
                 color: #ffffff !important;
             }
         @endunless
-
         /* --- RESPONSIVE MOBILE DROPDOWN HP FIX --- */
         @media (max-width: 991.98px) {
             .navbar-collapse {
@@ -103,7 +99,6 @@
                 border-radius: 6px;
             }
         }
-
         /* --- FOOTER STYLING --- */
         .footer-custom {
             background-color: #111111;
@@ -138,7 +133,7 @@
         .footer-links a:hover {
             color: #ffffff;
         }
-        
+       
         /* --- BRANDED ASSETS FOR SOCIAL MEDIA --- */
         .social-icon-box {
             display: inline-block;
@@ -152,7 +147,6 @@
             width: 32px;  /* Ukuran disesuaikan agar proporsional */
             height: auto;
         }
-
         /* --- BRANDED ASSETS FOR CONTACT LIST --- */
         .contact-item {
             display: flex;
@@ -164,7 +158,6 @@
             height: auto;
             flex-shrink: 0;
         }
-
         .footer-bottom {
             border-top: 1px solid #222222;
             padding-top: 30px;
@@ -175,43 +168,40 @@
     </style>
 </head>
 <body>
-
     <!-- STATIC/TRANSPARENT NAVBAR -->
     <nav class="navbar navbar-expand-lg navbar-custom">
         <div class="container">
             <a class="navbar-brand navbar-brand-custom" href="{{ url('/') }}">TASTY FOOD</a>
-            
+           
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            
+           
             <div class="collapse navbar-collapse" id="mainNavbar">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0 gap-2">
                     <li class="nav-item">
-                        <a class="nav-link nav-link-custom" href="{{ url('/') }}">Home</a>
+                        <a class="nav-link nav-link-custom" href="{{ url('/') }}">{{ $globalNavbar->menu_home }}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link nav-link-custom" href="{{ url('/tentang') }}">Tentang</a>
+                        <a class="nav-link nav-link-custom" href="{{ url('/tentang') }}">{{ $globalNavbar->menu_tentang }}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link nav-link-custom" href="{{ url('/berita') }}">Berita</a>
+                        <a class="nav-link nav-link-custom" href="{{ url('/berita') }}">{{ $globalNavbar->menu_berita }}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link nav-link-custom" href="{{ url('/galeri') }}">Galeri</a>
+                        <a class="nav-link nav-link-custom" href="{{ url('/galeri') }}">{{ $globalNavbar->menu_galeri }}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link nav-link-custom" href="{{ url('/kontak') }}">Kontak</a>
+                        <a class="nav-link nav-link-custom" href="{{ url('/kontak') }}">{{ $globalNavbar->menu_kontak }}</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
-
     <!-- CONTENT PLACEHOLDER -->
     <main>
         @yield('content')
     </main>
-
     <!-- GLOBAL FOOTER (BRANDED ASSETS VERSION) -->
     <footer class="footer-custom">
         <div class="container">
@@ -225,15 +215,15 @@
                     <div class="d-flex align-items-center">
                         <!-- Menggunakan Aset Facebook Resmi Perusahaan -->
                         <a href="https://facebook.com" class="social-icon-box" target="_blank">
-                            <img src="{{ asset('assets/images/001-facebook@2x.avif') }}" alt="Facebook" class="social-img-asset">
+                            <img src="{{ asset('assets/images/001-facebook@2x.png') }}" alt="Facebook" class="social-img-asset">
                         </a>
                         <!-- Menggunakan Aset Twitter Resmi Perusahaan -->
                         <a href="https://twitter.com" class="social-icon-box" target="_blank">
-                            <img src="{{ asset('assets/images/002-twitter@2x.avif') }}" alt="Twitter" class="social-img-asset">
+                            <img src="{{ asset('assets/images/002-twitter@2x.png') }}" alt="Twitter" class="social-img-asset">
                         </a>
                     </div>
                 </div>
-                
+               
                 <!-- Kolom 2: Useful Links -->
                 <div class="col-lg-2 col-md-6 footer-links">
                     <h5 class="footer-title">Useful Links</h5>
@@ -244,7 +234,7 @@
                         <li><a href="#">Testimonial</a></li>
                     </ul>
                 </div>
-                
+               
                 <!-- Kolom 3: Privacy -->
                 <div class="col-lg-2 col-md-6 footer-links">
                     <h5 class="footer-title">Privacy</h5>
@@ -255,30 +245,30 @@
                         <li><a href="#">Servis</a></li>
                     </ul>
                 </div>
-                
+               
                 <!-- Kolom 4: Contact Info -->
                 <div class="col-lg-4 col-md-6">
                     <h5 class="footer-title">Contact Info</h5>
                     <ul class="list-unstyled footer-text d-flex flex-column gap-3">
                         <!-- Kontak: Email menggunakan ic_markunread -->
                         <li class="contact-item">
-                            <img src="{{ asset('assets/images/ic_markunread_24px@2x.avif') }}" alt="Email Icon" class="contact-img-asset">
+                            <img src="{{ asset('assets/images/ic_markunread_24px@2x.png') }}" alt="Email Icon" class="contact-img-asset">
                             <span>tastyfood@gmail.com</span>
-                        </li>
+                        </li class="contact-item">
                         <!-- Kontak: Telepon menggunakan ic_call -->
                         <li class="contact-item">
-                            <img src="{{ asset('assets/images/ic_call_24px@2x.avif') }}" alt="Phone Icon" class="contact-img-asset">
+                            <img src="{{ asset('assets/images/ic_call_24px@2x.png') }}" alt="Phone Icon" class="contact-img-asset">
                             <span>+62 812 3456 7890</span>
-                        </li>
+                        </li class="contact-item">
                         <!-- Kontak: Lokasi menggunakan ic_place -->
                         <li class="contact-item">
-                            <img src="{{ asset('assets/images/ic_place_24px@2x.avif') }}" alt="Location Icon" class="contact-img-asset">
+                            <img src="{{ asset('assets/images/ic_place_24px@2x.png') }}" alt="Location Icon" class="contact-img-asset">
                             <span>Kota Bandung, Jawa Barat</span>
                         </li>
                     </ul>
                 </div>
             </div>
-            
+           
             <!-- Hak Cipta -->
             <div class="row">
                 <div class="col-12 text-center footer-bottom">
@@ -287,7 +277,6 @@
             </div>
         </div>
     </footer>
-
     <!-- Bootstrap 5 JavaScript Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>

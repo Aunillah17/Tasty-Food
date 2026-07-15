@@ -57,7 +57,7 @@
             border-color: #fbbf24 !important;
             background-color: #fffbeb;
         }
-        /* BRANDED BUTTON (Sama persis dengan tombol home lu) */
+        /* BRANDED BUTTON */
         .btn-dark-custom {
             background-color: #000000;
             color: #ffffff;
@@ -108,44 +108,47 @@
     </style>
 </head>
 <body>
-
     <!-- NAVBAR KHUSUS ADMIN (VERSI LENGKAP NAVIGASI) -->
-<nav class="navbar navbar-expand-lg navbar-admin mb-5">
-    <div class="container">
-        <a class="navbar-brand navbar-brand-admin" href="/tasty-secret-admin">TASTY FOOD <span>ADMIN</span></a>
-        
-        <button class="navbar-toggler border-white text-white" type="button" data-bs-toggle="collapse" data-bs-target="#adminNavbar">
-            <!-- Filter invert biar ikon burger-nya warna putih -->
-            <span class="navbar-toggler-icon" style="filter: invert(1);"></span>
-        </button>
-        
-        <div class="collapse navbar-collapse" id="adminNavbar">
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0 gap-1">
-                <li class="nav-item">
-                    <a class="nav-link nav-link-admin {{ Request::is('tasty-secret-admin') ? 'active' : '' }}" href="/tasty-secret-admin">Dashboard</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link nav-link-admin {{ Request::is('tasty-secret-admin/home') ? 'active' : '' }}" href="/tasty-secret-admin/home">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link nav-link-admin {{ Request::is('tasty-secret-admin/tentang') ? 'active' : '' }}" href="/tasty-secret-admin/tentang">Tentang</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link nav-link-admin {{ Request::is('tasty-secret-admin/berita*') ? 'active' : '' }}" href="/tasty-secret-admin/berita">Berita</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link nav-link-admin {{ Request::is('tasty-secret-admin/galeri*') ? 'active' : '' }}" href="/tasty-secret-admin/galeri">Galeri</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link nav-link-admin {{ Request::is('tasty-secret-admin/kontak*') ? 'active' : '' }}" href="/tasty-secret-admin/kontak">Kontak</a>
-                </li>
-                <li class="nav-item ms-lg-3">
-                    <a class="nav-link nav-link-admin text-warning" href="{{ url('/') }}" target="_blank" style="color: #fbbf24 !important;">Lihat Web ↗</a>
-                </li>
-            </ul>
+    <nav class="navbar navbar-expand-lg navbar-admin mb-5">
+        <div class="container">
+            <a class="navbar-brand navbar-brand-admin" href="/tasty-secret-admin">TASTY FOOD <span>ADMIN</span></a>
+           
+            <button class="navbar-toggler border-white text-white" type="button" data-bs-toggle="collapse" data-bs-target="#adminNavbar">
+                <!-- Filter invert biar ikon burger-nya warna putih -->
+                <span class="navbar-toggler-icon" style="filter: invert(1);"></span>
+            </button>
+           
+            <div class="collapse navbar-collapse" id="adminNavbar">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 gap-1">
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-admin {{ Request::is('tasty-secret-admin') ? 'active' : '' }}" href="/tasty-secret-admin">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-admin {{ Request::is('tasty-secret-admin/home') ? 'active' : '' }}" href="/tasty-secret-admin/home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-admin {{ Request::is('tasty-secret-admin/tentang') ? 'active' : '' }}" href="/tasty-secret-admin/tentang">Tentang</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-admin {{ Request::is('tasty-secret-admin/berita*') ? 'active' : '' }}" href="/tasty-secret-admin/berita">Berita</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-admin {{ Request::is('tasty-secret-admin/galeri*') ? 'active' : '' }}" href="/tasty-secret-admin/galeri">Galeri</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-admin {{ Request::is('tasty-secret-admin/kontak*') ? 'active' : '' }}" href="/tasty-secret-admin/kontak">Kontak</a>
+                    </li>
+                    <!-- MENU KELOLA NAVBAR YANG BARU -->
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-admin {{ Request::is('tasty-secret-admin/navbar*') ? 'active' : '' }}" href="/tasty-secret-admin/navbar">Navbar</a>
+                    </li>
+                    <li class="nav-item ms-lg-3">
+                        <a class="nav-link nav-link-admin text-warning" href="{{ url('/') }}" target="_blank" style="color: #fbbf24 !important;">Lihat Web ↗</a>
+                    </li>
+                </ul>
+            </div>
         </div>
-    </div>
-</nav>
+    </nav>
 
     <!-- KONTEN UTAMA ADMIN -->
     <main class="py-2">
