@@ -93,13 +93,15 @@
                     <img src="{{ asset('assets/images/' . $beritaUtama->gambar) }}" alt="{{ $beritaUtama->judul }}" class="news-img-main">
                 </div>
                 <div class="col-lg-6">
+                    <img src="" alt="">
                     <h3 class="fw-bold text-uppercase mb-4 text-dark" style="letter-spacing: 0.5px; line-height: 1.4;">
                         {{ $beritaUtama->judul }}
                     </h3>
                     <p class="text-muted mb-5 text-justify" style="line-height: 1.8;">
                         {{ $beritaUtama->deskripsi_pendek }}
                     </p>
-                    <a href="{{ url('/berita/' . $beritaUtama->id) }}" class="btn btn-dark-custom">Baca Selengkapnya</a>
+                    <!-- Pembetulan Link Detail Rute Berita Utama -->
+                    <a href="{{ url('/berita/detail/' . $beritaUtama->id) }}" class="btn btn-dark-custom">Baca Selengkapnya</a>
                 </div>
             </div>
         </div>
@@ -121,7 +123,8 @@
                                 <p class="text-muted small mb-3">{{ Str::limit($b->deskripsi_pendek, 90) }}</p>
                             </div>
                             <div class="d-flex justify-content-between align-items-center mt-2">
-                                <a href="{{ url('/berita/' . $b->id) }}" class="text-accent-yellow">baca selengkapnya</a>
+                                <!-- Pembetulan Link Detail Rute Berita Grid Sampingan -->
+                                <a href="{{ url('/berita/detail/' . $b->id) }}" class="text-accent-yellow">baca selengkapnya</a>
                                 <span class="text-muted small">•••</span>
                             </div>
                         </div>
@@ -136,5 +139,4 @@
         <p class="text-muted fs-5">Belum ada data berita yang tersedia.</p>
     </div>
 @endif
-
 @endsection

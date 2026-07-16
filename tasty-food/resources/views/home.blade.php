@@ -184,92 +184,62 @@
 </section>
 
 <!-- ==========================================================================
-   3. BERITA KAMI SECTION
+   3. BERITA KAMI SECTION (Dinamis mengambil data dari AppServiceProvider/Database)
    ========================================================================== -->
 <section class="py-5 my-5">
     <div class="container">
         <h2 class="text-uppercase fw-bold text-dark text-center mb-5">Berita Kami</h2>
        
+        @php 
+            $beritasHome = \App\Models\Berita::latest()->take(5)->get(); 
+            $beritaUtamaHome = $beritasHome->first();
+        @endphp
+
+        @if($beritasHome->count() > 0)
         <div class="row g-4">
             <!-- Berita Utama (Kiri Gede) -->
             <div class="col-lg-6">
                 <div class="card h-100 border-0 shadow-sm" style="border-radius: 12px; overflow: hidden;">
-                    <img src="{{ asset('assets/images/fathul-abrar-T-qI_MI2EMA-unsplash.avif') }}" class="card-img-top" alt="Berita Utama" style="height: 340px; object-fit: cover;">
+                    <img src="{{ asset('assets/images/' . $beritaUtamaHome->gambar) }}" class="card-img-top" alt="Berita Utama" style="height: 340px; object-fit: cover;">
                     <div class="card-body p-4 d-flex flex-column justify-content-between">
                         <div>
-                            <h4 class="fw-bold text-uppercase mb-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit</h4>
-                            <p class="text-muted small" style="line-height: 1.7;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sit amet lectus convallis, interdum diam non, hendrerit diam. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Sed elementum feugiat dui.</p>
+                            <h4 class="fw-bold text-uppercase mb-3">{{ $beritaUtamaHome->judul }}</h4>
+                            <p class="text-muted small" style="line-height: 1.7;">{{ Str::limit($beritaUtamaHome->deskripsi_pendek, 200) }}</p>
                         </div>
                         <div class="d-flex justify-content-between align-items-center mt-3">
-                            <a href="{{ url('/berita/1') }}" class="btn btn-dark-custom">Baca Selengkapnya</a>
+                            <a href="{{ url('/berita/detail/' . $beritaUtamaHome->id) }}" class="btn btn-dark-custom">Baca Selengkapnya</a>
                             <span class="text-muted" style="font-size: 20px;">•••</span>
                         </div>
                     </div>
                 </div>
             </div>
            
-            <!-- Berita Sampingan Grid (Kanan - 4 Items Mini) -->
+            <!-- Berita Sampingan Grid (Kanan - Sisa Items) -->
             <div class="col-lg-6">
                 <div class="row g-4">
-                    <!-- Sampingan 1 -->
+                    @foreach($beritasHome->skip(1) as $itemSide)
                     <div class="col-md-6">
                         <div class="card h-100 border-0 shadow-sm" style="border-radius: 12px; overflow: hidden;">
-                            <img src="{{ asset('assets/images/sanket-shah-SVA7TyHxojY-unsplash.avif') }}" class="card-img-top" alt="Berita" style="height: 160px; object-fit: cover;">
+                            <img src="{{ asset('assets/images/' . $itemSide->gambar) }}" class="card-img-top" alt="Berita" style="height: 160px; object-fit: cover;">
                             <div class="card-body p-3">
-                                <h6 class="fw-bold text-uppercase mb-2">Lorem Ipsum</h6>
-                                <p class="text-muted small mb-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                <h6 class="fw-bold text-uppercase mb-2">{{ Str::limit($itemSide->judul, 35) }}</h6>
+                                <p class="text-muted small mb-3">{{ Str::limit($itemSide->deskripsi_pendek, 60) }}</p>
                                 <div class="d-flex justify-content-between align-items-center">
-                                    <a href="{{ url('/berita') }}" class="text-accent-yellow" style="font-size: 12px;">Baca selengkapnya</a>
+                                    <a href="{{ url('/berita/detail/' . $itemSide->id) }}" class="text-accent-yellow" style="font-size: 12px;">Baca selengkapnya</a>
                                     <span class="text-muted">•••</span>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <!-- Sampingan 2 -->
-                    <div class="col-md-6">
-                        <div class="card h-100 border-0 shadow-sm" style="border-radius: 12px; overflow: hidden;">
-                            <img src="{{ asset('assets/images/sebastian-coman-photography-eBmyH7oO5wY-unsplash.avif') }}" class="card-img-top" alt="Berita" style="height: 160px; object-fit: cover;">
-                            <div class="card-body p-3">
-                                <h6 class="fw-bold text-uppercase mb-2">Lorem Ipsum</h6>
-                                <p class="text-muted small mb-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <a href="{{ url('/berita') }}" class="text-accent-yellow" style="font-size: 12px;">Baca selengkapnya</a>
-                                    <span class="text-muted">•••</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Sampingan 3 -->
-                    <div class="col-md-6">
-                        <div class="card h-100 border-0 shadow-sm" style="border-radius: 12px; overflow: hidden;">
-                            <img src="{{ asset('assets/images/jimmy-dean-Jvw3pxgeiZw-unsplash.avif') }}" class="card-img-top" alt="Berita" style="height: 160px; object-fit: cover;">
-                            <div class="card-body p-3">
-                                <h6 class="fw-bold text-uppercase mb-2">Lorem Ipsum</h6>
-                                <p class="text-muted small mb-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <a href="{{ url('/berita') }}" class="text-accent-yellow" style="font-size: 12px;">Baca selengkapnya</a>
-                                    <span class="text-muted">•••</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Sampingan 4 -->
-                    <div class="col-md-6">
-                        <div class="card h-100 border-0 shadow-sm" style="border-radius: 12px; overflow: hidden;">
-                            <img src="{{ asset('assets/images/luisa-brimble-HvXEbkcXjSk-unsplash.avif') }}" class="card-img-top" alt="Berita" style="height: 160px; object-fit: cover;">
-                            <div class="card-body p-3">
-                                <h6 class="fw-bold text-uppercase mb-2">Lorem Ipsum</h6>
-                                <p class="text-muted small mb-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <a href="{{ url('/berita') }}" class="text-accent-yellow" style="font-size: 12px;">Baca selengkapnya</a>
-                                    <span class="text-muted">•••</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>
+        @else
+        <div class="text-center py-4">
+            <p class="text-muted">Belum ada data berita terbaru.</p>
+        </div>
+        @endif
     </div>
 </section>
 

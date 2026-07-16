@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('homes', function (Blueprint $table) {
             $table->id();
+
+            $table->string('logo_text')->default('TASTY FOOD');
         
             // 1. Hero Section & Tentang Preview
             $table->string('hero_judul_atas');

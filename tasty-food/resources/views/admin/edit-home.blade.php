@@ -1,7 +1,6 @@
 @extends('layouts.admin')
 @section('title', 'Kelola Halaman Home')
 @section('content')
-
 <div class="container my-4 mb-5">
     <!-- Header Page -->
     <div class="row mb-4 align-items-center">
@@ -13,7 +12,7 @@
             <a href="/tasty-secret-admin" class="btn btn-outline-secondary rounded-0 px-4 text-uppercase fw-bold fs-7"> Kembali ke Dashboard</a>
         </div>
     </div>
-
+    
     <!-- Alert Notifikasi Sukses -->
     @if(session('sukses'))
         <div class="alert alert-success rounded-0 border-0 shadow-sm d-flex align-items-center p-3 mb-4" role="alert">
@@ -21,17 +20,24 @@
             <div class="fw-bold">{{ session('sukses') }}</div>
         </div>
     @endif
-
+    
     <!-- Form Utama Pembaruan Data -->
     <form action="/tasty-secret-admin/home/update" method="POST">
         @csrf
-        
-        <!-- BLOCK 1: HERO SECTION & ABOUT PREVIEW -->
+       
+        <!-- BLOCK 1: BRANDING, HERO SECTION & ABOUT PREVIEW -->
         <div class="card card-branded p-4 mb-4">
             <h4 class="fw-bold text-uppercase text-dark mb-4 pb-2 border-bottom" style="letter-spacing: 0.5px;">
-                📌 Hero Section & Tentang Preview
+                📌 Identitas & Hero Section
             </h4>
             <div class="row g-3">
+                <!-- INPUT TERBARU: Logo Teks Navbar Global -->
+                <div class="col-md-12 mb-3">
+                    <label class="form-label fw-bold text-danger text-uppercase small">Logo Teks Navbar (Global)</label>
+                    <input type="text" name="logo_text" class="form-control form-control-custom" value="{{ $home->logo_text }}" required>
+                    <div class="form-text text-muted small mt-1">Mengubah tulisan brand utama pada pojok kiri atas navbar publik (contoh default: <code>TASTY FOOD</code>).</div>
+                </div>
+
                 <div class="col-md-6">
                     <label class="form-label fw-bold text-dark text-uppercase small">Judul Atas (Hero)</label>
                     <input type="text" name="hero_judul_atas" class="form-control form-control-custom" value="{{ $home->hero_judul_atas }}" required>
@@ -55,13 +61,13 @@
                 </div>
             </div>
         </div>
-
+        
         <!-- BLOCK 2: 4 CARD MAKANAN BULAT -->
         <div class="card card-branded p-4 mb-5">
             <h4 class="fw-bold text-uppercase text-dark mb-4 pb-2 border-bottom" style="letter-spacing: 0.5px;">
                 🍔 Konten 4 Card Makanan Melayang
             </h4>
-            
+           
             <div class="row g-4">
                 <!-- CARD 1 -->
                 <div class="col-xl-3 col-md-6">
@@ -81,7 +87,7 @@
                         </div>
                     </div>
                 </div>
-
+                
                 <!-- CARD 2 -->
                 <div class="col-xl-3 col-md-6">
                     <div class="p-3 bg-light border" style="border-radius: 8px;">
@@ -100,7 +106,7 @@
                         </div>
                     </div>
                 </div>
-
+                
                 <!-- CARD 3 -->
                 <div class="col-xl-3 col-md-6">
                     <div class="p-3 bg-light border" style="border-radius: 8px;">
@@ -119,7 +125,7 @@
                         </div>
                     </div>
                 </div>
-
+                
                 <!-- CARD 4 -->
                 <div class="col-xl-3 col-md-6">
                     <div class="p-3 bg-light border" style="border-radius: 8px;">
@@ -140,7 +146,7 @@
                 </div>
             </div>
         </div>
-
+        
         <!-- Tombol Aksi Simpan Permanen -->
         <div class="row">
             <div class="col-12 text-end">
@@ -151,5 +157,4 @@
         </div>
     </form>
 </div>
-
 @endsection

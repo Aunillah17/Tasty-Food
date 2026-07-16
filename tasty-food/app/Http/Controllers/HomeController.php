@@ -25,13 +25,16 @@ class HomeController extends Controller
     public function updateAdmin(Request $request)
     {
         $request->validate([
-            'hero_judul_atas' => 'required', 'hero_judul_bawah' => 'required',
-            'hero_deskripsi' => 'required', 'hero_img' => 'required',
-            'about_preview' => 'required',
-            'card1_img' => 'required', 'card1_judul' => 'required', 'card1_deskripsi' => 'required',
-            'card2_img' => 'required', 'card2_judul' => 'required', 'card2_deskripsi' => 'required',
-            'card3_img' => 'required', 'card3_judul' => 'required', 'card3_deskripsi' => 'required',
-            'card4_img' => 'required', 'card4_judul' => 'required', 'card4_deskripsi' => 'required',
+        'logo_text'         => 'required',
+        'hero_judul_atas'   => 'required', 
+        'hero_judul_bawah'  => 'required',
+        'hero_deskripsi'    => 'required', 
+        'hero_img'          => 'required',
+        'about_preview'     => 'required',
+        'card1_img' => 'required', 'card1_judul' => 'required', 'card1_deskripsi' => 'required',
+        'card2_img' => 'required', 'card2_judul' => 'required', 'card2_deskripsi' => 'required',
+        'card3_img' => 'required', 'card3_judul' => 'required', 'card3_deskripsi' => 'required',
+        'card4_img' => 'required', 'card4_judul' => 'required', 'card4_deskripsi' => 'required',
         ]);
 
         $home = Home::first();

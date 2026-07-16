@@ -171,7 +171,8 @@
     <!-- STATIC/TRANSPARENT NAVBAR -->
     <nav class="navbar navbar-expand-lg navbar-custom">
         <div class="container">
-            <a class="navbar-brand navbar-brand-custom" href="{{ url('/') }}">TASTY FOOD</a>
+            <!-- DINAMIS: Logo Teks Navbar Terikat Database -->
+            <a class="navbar-brand navbar-brand-custom" href="{{ url('/') }}">{{ $homeGlobal->logo_text ?? 'TASTY FOOD' }}</a>
            
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -198,29 +199,35 @@
             </div>
         </div>
     </nav>
+
     <!-- CONTENT PLACEHOLDER -->
     <main>
         @yield('content')
     </main>
-    <!-- GLOBAL FOOTER (BRANDED ASSETS VERSION) -->
+
+    <!-- GLOBAL FOOTER (DINAMIS DARI DATABASE) -->
     <footer class="footer-custom">
         <div class="container">
             <div class="row g-5">
                 <!-- Kolom 1: Profil Ringkas -->
                 <div class="col-lg-4 col-md-6">
-                    <h5 class="footer-logo mb-3">Tasty Food</h5>
+                    <h5 class="footer-logo mb-3">{{ $footerGlobal->brand_title ?? 'Tasty Food' }}</h5>
                     <p class="footer-text mb-4">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliqam at dignissim nunc, id maximus ex. Etiam nec dignissim elit, at dignissim enim.
+                        {{ $footerGlobal->brand_desc ?? 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliqam at dignissim nunc, id maximus ex. Etiam nec dignissim elit, at dignissim enim.' }}
                     </p>
                     <div class="d-flex align-items-center">
                         <!-- Menggunakan Aset Facebook Resmi Perusahaan -->
-                        <a href="https://facebook.com" class="social-icon-box" target="_blank">
-                            <img src="{{ asset('assets/images/001-facebook@2x.png') }}" alt="Facebook" class="social-img-asset">
+                        @if(!empty($footerGlobal->facebook_url))
+                        <a href="{{ $footerGlobal->facebook_url }}" class="social-icon-box" target="_blank">
+                            <img src="{{ asset('assets/images/001-facebook@2x.avif') }}" alt="Facebook" class="social-img-asset">
                         </a>
+                        @endif
                         <!-- Menggunakan Aset Twitter Resmi Perusahaan -->
-                        <a href="https://twitter.com" class="social-icon-box" target="_blank">
-                            <img src="{{ asset('assets/images/002-twitter@2x.png') }}" alt="Twitter" class="social-img-asset">
+                        @if(!empty($footerGlobal->twitter_url))
+                        <a href="{{ $footerGlobal->twitter_url }}" class="social-icon-box" target="_blank">
+                            <img src="{{ asset('assets/images/002-twitter@2x.avif') }}" alt="Twitter" class="social-img-asset">
                         </a>
+                        @endif
                     </div>
                 </div>
                
@@ -252,18 +259,18 @@
                     <ul class="list-unstyled footer-text d-flex flex-column gap-3">
                         <!-- Kontak: Email menggunakan ic_markunread -->
                         <li class="contact-item">
-                            <img src="{{ asset('assets/images/ic_markunread_24px@2x.png') }}" alt="Email Icon" class="contact-img-asset">
-                            <span>tastyfood@gmail.com</span>
-                        </li class="contact-item">
+                            <img src="{{ asset('assets/images/ic_markunread_24px@2x.avif') }}" alt="Email Icon" class="contact-img-asset">
+                            <span>{{ $footerGlobal->email_address ?? 'tastyfood@gmail.com' }}</span>
+                        </li>
                         <!-- Kontak: Telepon menggunakan ic_call -->
                         <li class="contact-item">
-                            <img src="{{ asset('assets/images/ic_call_24px@2x.png') }}" alt="Phone Icon" class="contact-img-asset">
-                            <span>+62 812 3456 7890</span>
-                        </li class="contact-item">
+                            <img src="{{ asset('assets/images/ic_call_24px@2x.avif') }}" alt="Phone Icon" class="contact-img-asset">
+                            <span>{{ $footerGlobal->phone_number ?? '+62 812 3456 7890' }}</span>
+                        </li>
                         <!-- Kontak: Lokasi menggunakan ic_place -->
                         <li class="contact-item">
-                            <img src="{{ asset('assets/images/ic_place_24px@2x.png') }}" alt="Location Icon" class="contact-img-asset">
-                            <span>Kota Bandung, Jawa Barat</span>
+                            <img src="{{ asset('assets/images/ic_place_24px@2x.avif') }}" alt="Location Icon" class="contact-img-asset">
+                            <span>{{ $footerGlobal->location_text ?? 'Kota Bandung, Jawa Barat' }}</span>
                         </li>
                     </ul>
                 </div>
@@ -272,7 +279,7 @@
             <!-- Hak Cipta -->
             <div class="row">
                 <div class="col-12 text-center footer-bottom">
-                    <p class="m-0">Copyright &copy;2026 All rights reserved.</p>
+                    <p class="m-0">{!! $footerGlobal->copyright_text ?? 'Copyright &copy;2026 All rights reserved.' !!}</p>
                 </div>
             </div>
         </div>
