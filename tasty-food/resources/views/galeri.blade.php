@@ -1,7 +1,5 @@
 @extends('layouts.main')
-
 @section('title', 'Galeri Kami')
-
 @section('content')
 <style>
     /* Styling Banner Atas (Header) - Seragam dengan halaman lain */
@@ -24,7 +22,6 @@
         position: relative;
         z-index: 2;
     }
-
     /* Kustomisasi Slider / Carousel Gambar */
     .carousel-section {
         background-color: #f8f9fa; /* Background abu-abu halus sesuai request */
@@ -57,7 +54,6 @@
         font-size: 30px;
         font-weight: bold;
     }
-
     /* Styling Grid Kotak 4x3 */
     .gallery-grid-wrapper {
         aspect-ratio: 1 / 1; /* Memaksa gambar selalu berbentuk kotak presisi */
@@ -92,28 +88,34 @@
     <div class="container py-3">
         <div class="row justify-content-center">
             <div class="col-lg-10">
-                
+               
                 <!-- Bootstrap 5 Carousel Components -->
                 <div id="galleryTopSlider" class="carousel slide carousel-fade" data-bs-ride="carousel">
                     <div class="carousel-inner">
-                        <!-- Slide Foto 1 (Aktif Pertama) -->
-                        <div class="carousel-item active">
-                            <img src="{{ asset('assets/images/ella-olsson-mmnKI8kMxpc-unsplash.avif') }}" class="d-block w-100" alt="Slider 1">
-                        </div>
-                        <!-- Slide Foto 2 -->
-                        <div class="carousel-item">
-                            <img src="{{ asset('assets/images/jonathan-borba-Gkc_xM3VY34-unsplash.avif') }}" class="d-block w-100" alt="Slider 2">
-                        </div>
-                        <!-- Slide Foto 3 -->
-                        <div class="carousel-item">
-                            <img src="{{ asset('assets/images/mariana-medvedeva-iNwCO9ycBlc-unsplash.avif') }}" class="d-block w-100" alt="Slider 3">
-                        </div>
-                        <!-- Slide Foto 4 -->
-                        <div class="carousel-item">
-                            <img src="{{ asset('assets/images/michele-blackwell-rAyCBQTH7ws-unsplash.avif') }}" class="d-block w-100" alt="Slider 4">
-                        </div>
+                        @if($carousel->count() > 0)
+                            {{-- Tampilkan data yang is_carousel = true --}}
+                            @foreach($carousel as $key => $slide)
+                                <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
+                                    <img src="{{ asset('assets/images/' . $slide->gambar) }}" class="d-block w-100" alt="{{ $slide->judul }}">
+                                </div>
+                            @endforeach
+                        @else
+                            {{-- Fallback Slider Bawaan Jika Tidak Ada Data Tercentang Carousel --}}
+                            <div class="carousel-item active">
+                                <img src="{{ asset('assets/images/ella-olsson-mmnKI8kMxpc-unsplash.avif') }}" class="d-block w-100" alt="Slider 1">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="{{ asset('assets/images/jonathan-borba-Gkc_xM3VY34-unsplash.avif') }}" class="d-block w-100" alt="Slider 2">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="{{ asset('assets/images/mariana-medvedeva-iNwCO9ycBlc-unsplash.avif') }}" class="d-block w-100" alt="Slider 3">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="{{ asset('assets/images/michele-blackwell-rAyCBQTH7ws-unsplash.avif') }}" class="d-block w-100" alt="Slider 4">
+                            </div>
+                        @endif
                     </div>
-                    
+                   
                     <!-- Tombol Geser Kiri -->
                     <button class="carousel-control-prev" type="button" data-bs-target="#galleryTopSlider" data-bs-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -125,7 +127,6 @@
                         <span class="visually-hidden">Next</span>
                     </button>
                 </div>
-
             </div>
         </div>
     </div>
@@ -136,84 +137,33 @@
    ========================================================================== -->
 <section class="py-5 my-4">
     <div class="container">
-        
+       
         <div class="row g-4">
-            <!-- Baris 1 - Foto 1 -->
-            <div class="col-xl-3 col-md-6">
-                <div class="gallery-grid-wrapper">
-                    <img src="{{ asset('assets/images/anh-nguyen-kcA-c3f_3FE-unsplash.avif') }}" alt="Galeri 1">
-                </div>
-            </div>
-            <!-- Baris 1 - Foto 2 -->
-            <div class="col-xl-3 col-md-6">
-                <div class="gallery-grid-wrapper">
-                    <img src="{{ asset('assets/images/anna-pelzer-IGfIGP5ONV0-unsplash.avif') }}" alt="Galeri 2">
-                </div>
-            </div>
-            <!-- Baris 1 - Foto 3 -->
-            <div class="col-xl-3 col-md-6">
-                <div class="gallery-grid-wrapper">
-                    <img src="{{ asset('assets/images/brooke-lark-1Rm9GLHV0UA-unsplash.avif') }}" alt="Galeri 3">
-                </div>
-            </div>
-            <!-- Baris 1 - Foto 4 -->
-            <div class="col-xl-3 col-md-6">
-                <div class="gallery-grid-wrapper">
-                    <img src="{{ asset('assets/images/brooke-lark-nBtmglfY0HU-unsplash.avif') }}" alt="Galeri 4">
-                </div>
-            </div>
-
-            <!-- Baris 2 - Foto 5 -->
-            <div class="col-xl-3 col-md-6">
-                <div class="gallery-grid-wrapper">
-                    <img src="{{ asset('assets/images/brooke-lark-oaz0raysASk-unsplash.avif') }}" alt="Galeri 5">
-                </div>
-            </div>
-            <!-- Baris 2 - Foto 6 -->
-            <div class="col-xl-3 col-md-6">
-                <div class="gallery-grid-wrapper">
-                    <img src="{{ asset('assets/images/eiliv-aceron-ZuIDLSz3XLg-unsplash.avif') }}" alt="Galeri 6">
-                </div>
-            </div>
-            <!-- Baris 2 - Foto 7 -->
-            <div class="col-xl-3 col-md-6">
-                <div class="gallery-grid-wrapper">
-                    <img src="{{ asset('assets/images/fathul-abrar-T-qI_MI2EMA-unsplash.avif') }}" alt="Galeri 7">
-                </div>
-            </div>
-            <!-- Baris 2 - Foto 8 -->
-            <div class="col-xl-3 col-md-6">
-                <div class="gallery-grid-wrapper">
-                    <img src="{{ asset('assets/images/jimmy-dean-Jvw3pxgeiZw-unsplash.avif') }}" alt="Galeri 8">
-                </div>
-            </div>
-
-            <!-- Baris 3 - Foto 9 -->
-            <div class="col-xl-3 col-md-6">
-                <div class="gallery-grid-wrapper">
-                    <img src="{{ asset('assets/images/luisa-brimble-HvXEbkcXjSk-unsplash.avif') }}" alt="Galeri 9">
-                </div>
-            </div>
-            <!-- Baris 3 - Foto 10 -->
-            <div class="col-xl-3 col-md-6">
-                <div class="gallery-grid-wrapper">
-                    <img src="{{ asset('assets/images/sebastian-coman-photography-eBmyH7oO5wY-unsplash.avif') }}" alt="Galeri 10">
-                </div>
-            </div>
-            <!-- Baris 3 - Foto 11 -->
-            <div class="col-xl-3 col-md-6">
-                <div class="gallery-grid-wrapper">
-                    <img src="{{ asset('assets/images/sanket-shah-SVA7TyHxojY-unsplash.avif') }}" alt="Galeri 11">
-                </div>
-            </div>
-            <!-- Baris 3 - Foto 12 -->
-            <div class="col-xl-3 col-md-6">
-                <div class="gallery-grid-wrapper">
-                    <img src="{{ asset('assets/images/monika-grabkowska-P1aohbiT-EY-unsplash.avif') }}" alt="Galeri 12">
-                </div>
-            </div>
+            @if($grid->count() > 0)
+                {{-- Tampilkan khusus data yang is_carousel = false --}}
+                @foreach($grid as $item)
+                    <div class="col-xl-3 col-md-6">
+                        <div class="gallery-grid-wrapper" title="{{ $item->judul }}">
+                            <img src="{{ asset('assets/images/' . $item->gambar) }}" alt="{{ $item->judul }}">
+                        </div>
+                    </div>
+                @endforeach
+            @else
+                {{-- Fallback 12 Gambar Grid Statis jika Belum Ada Data Grid di DB --}}
+                <div class="col-xl-3 col-md-6"><div class="gallery-grid-wrapper"><img src="{{ asset('assets/images/anh-nguyen-kcA-c3f_3FE-unsplash.avif') }}" alt="Galeri 1"></div></div>
+                <div class="col-xl-3 col-md-6"><div class="gallery-grid-wrapper"><img src="{{ asset('assets/images/anna-pelzer-IGfIGP5ONV0-unsplash.avif') }}" alt="Galeri 2"></div></div>
+                <div class="col-xl-3 col-md-6"><div class="gallery-grid-wrapper"><img src="{{ asset('assets/images/brooke-lark-1Rm9GLHV0UA-unsplash.avif') }}" alt="Galeri 3"></div></div>
+                <div class="col-xl-3 col-md-6"><div class="gallery-grid-wrapper"><img src="{{ asset('assets/images/brooke-lark-nBtmglfY0HU-unsplash.avif') }}" alt="Galeri 4"></div></div>
+                <div class="col-xl-3 col-md-6"><div class="gallery-grid-wrapper"><img src="{{ asset('assets/images/brooke-lark-oaz0raysASk-unsplash.avif') }}" alt="Galeri 5"></div></div>
+                <div class="col-xl-3 col-md-6"><div class="gallery-grid-wrapper"><img src="{{ asset('assets/images/eiliv-aceron-ZuIDLSz3XLg-unsplash.avif') }}" alt="Galeri 6"></div></div>
+                <div class="col-xl-3 col-md-6"><div class="gallery-grid-wrapper"><img src="{{ asset('assets/images/fathul-abrar-T-qI_MI2EMA-unsplash.avif') }}" alt="Galeri 7"></div></div>
+                <div class="col-xl-3 col-md-6"><div class="gallery-grid-wrapper"><img src="{{ asset('assets/images/jimmy-dean-Jvw3pxgeiZw-unsplash.avif') }}" alt="Galeri 8"></div></div>
+                <div class="col-xl-3 col-md-6"><div class="gallery-grid-wrapper"><img src="{{ asset('assets/images/luisa-brimble-HvXEbkcXjSk-unsplash.avif') }}" alt="Galeri 9"></div></div>
+                <div class="col-xl-3 col-md-6"><div class="gallery-grid-wrapper"><img src="{{ asset('assets/images/sebastian-coman-photography-eBmyH7oO5wY-unsplash.avif') }}" alt="Galeri 10"></div></div>
+                <div class="col-xl-3 col-md-6"><div class="gallery-grid-wrapper"><img src="{{ asset('assets/images/sanket-shah-SVA7TyHxojY-unsplash.avif') }}" alt="Galeri 11"></div></div>
+                <div class="col-xl-3 col-md-6"><div class="gallery-grid-wrapper"><img src="{{ asset('assets/images/monika-grabkowska-P1aohbiT-EY-unsplash.avif') }}" alt="Galeri 12"></div></div>
+            @endif
         </div>
-
     </div>
 </section>
 @endsection

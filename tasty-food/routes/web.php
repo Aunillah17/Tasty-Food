@@ -6,7 +6,8 @@ use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\NavbarController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TentangController;
-use App\Http\Controllers\FooterController; // Ditambahkan di sini biar rapi
+use App\Http\Controllers\FooterController; 
+use App\Http\Controllers\GaleriController; 
 
 /*
 |--------------------------------------------------------------------------
@@ -23,7 +24,10 @@ Route::get('/tentang', [TentangController::class, 'index']);
 Route::get('/berita', [BeritaController::class, 'index']);
 // Halaman baca selengkapnya menggunakan show() bawaan controller lu
 Route::get('/berita/detail/{id}', [BeritaController::class, 'show']);
-Route::get('/galeri', function () { return view('galeri'); });
+
+// DINAMIS: Route publik galeri sekarang diarahkan ke controller agar bisa ambil data dari DB
+Route::get('/galeri', [GaleriController::class, 'index']);
+
 Route::get('/kontak', function () { return view('kontak'); });
 
 // ==========================================
@@ -54,7 +58,15 @@ Route::prefix('tasty-secret-admin')->group(function () {
     Route::get('/navbar', [NavbarController::class, 'editAdmin']);
     Route::post('/navbar/update', [NavbarController::class, 'updateAdmin']);
     
-    // 5. Kelola Footer Konten Global (DIBENTARKAN: Hapus prefix 'tasty-secret-admin' karena sudah di dalam group)
+    // 5. Kelola Footer (PERBAIKAN: Hapus ganda prefix tasty-secret-admin agar tidak 404)
     Route::get('/footer', [FooterController::class, 'editAdmin']);
     Route::post('/footer/update', [FooterController::class, 'updateAdmin']);
+
+    // 6. Kelola Galeri (FITUR BARU)
+    Route::get('/galeri', [GaleriController::class, 'indexAdmin']);
+    Route::get('/galeri/tambah', [GaleriController::class, 'createAdmin']);
+    Route::post('/galeri/simpan', [GaleriController::class, 'storeAdmin']);
+    Route::get('/galeri/edit/{id}', [GaleriController::class, 'editAdmin']);
+    Route::post('/galeri/update/{id}', [GaleriController::class, 'updateAdmin']);
+    Route::get('/galeri/hapus/{id}', [GaleriController::class, 'destroyAdmin']);
 });
