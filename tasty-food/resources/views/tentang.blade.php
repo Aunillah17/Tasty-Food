@@ -4,7 +4,7 @@
 <style>
     /* Semua Styling Asli Lu Tetap Gua Pertahankan 100% */
     .about-header-banner {
-        background: url('{{ asset('assets/images/Group 70.avif') }}') center/cover no-repeat;
+        background: url('{{ asset('assets/images/' . ($globalNavbar->banner_tentang ?? 'Group 70.avif')) }}') center/cover no-repeat;
         height: 400px;
         position: relative;
         margin-top: -110px;

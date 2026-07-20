@@ -25,10 +25,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        // 1. Memaksa Laravel menggunakan URL Codespaces kamu secara global (Tetap Aman)
+        // 1. Memaksa Laravel menggunakan URL Codespaces kamu secara global
         URL::forceRootUrl('https://ominous-couscous-g4rw7pw944jxcpwgw-8000.app.github.dev');
 
-        // 2. Menyediakan data navbar ke semua halaman secara otomatis jika tabelnya sudah di-migrate
+        // 2. Menyediakan data navbar & banner global ke semua halaman secara otomatis
         if (Schema::hasTable('navbars')) {
             $navbarData = Navbar::first() ?? new Navbar([
                 'menu_home' => 'Home',
@@ -36,7 +36,13 @@ class AppServiceProvider extends ServiceProvider
                 'menu_berita' => 'Berita',
                 'menu_galeri' => 'Galeri',
                 'menu_kontak' => 'Kontak',
+                'banner_tentang' => 'Group 70.avif',
+                'banner_berita' => 'Group 70.avif',
+                'banner_galeri' => 'Group 70.avif',
+                'banner_kontak' => 'Group 70.avif',
             ]);
+            
+            // Share menggunakan $globalNavbar (sesuai standar AppServiceProvider lu)
             View::share('globalNavbar', $navbarData);
         }
 

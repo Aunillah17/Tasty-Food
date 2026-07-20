@@ -8,7 +8,7 @@ use App\Models\Navbar;
 class NavbarController extends Controller
 {
     /**
-     * Menampilkan Form Edit Navbar di Panel Admin
+     * Menampilkan Form Edit Navbar & Banner Header di Panel Admin
      */
     public function editAdmin()
     {
@@ -17,7 +17,7 @@ class NavbarController extends Controller
     }
 
     /**
-     * Memproses Update Teks Menu Navbar ke Database
+     * Memproses Update Teks Menu Navbar & Banner Header ke Database
      */
     public function updateAdmin(Request $request)
     {
@@ -27,16 +27,20 @@ class NavbarController extends Controller
             'menu_berita' => 'required|string|max:50',
             'menu_galeri' => 'required|string|max:50',
             'menu_kontak' => 'required|string|max:50',
+            'banner_tentang' => 'required|string',
+            'banner_berita' => 'required|string',
+            'banner_galeri' => 'required|string',
+            'banner_kontak' => 'required|string',
         ]);
 
         $navbar = Navbar::first();
-        
+       
         if ($navbar) {
             $navbar->update($request->all());
         } else {
             Navbar::create($request->all());
         }
 
-        return redirect()->back()->with('sukses', 'Teks menu Navbar berhasil diperbarui!');
+        return redirect()->back()->with('sukses', 'Pengaturan Navbar dan Banner Header berhasil diperbarui!');
     }
 }

@@ -13,9 +13,10 @@ class DatabaseSeeder extends Seeder
     {
         // Memanggil semua seeder secara berurutan sesuai halamannya
         $this->call([
-            HomeSeeder::class,    // Mengisi data awal halaman Home
-            TentangSeeder::class, // Mengisi data awal halaman Tentang
-            BeritaSeeder::class,  // Mengisi 9 data berita sesuai mockup gambar[cite: 1]
+            HomeSeeder::class,
+            TentangSeeder::class,
+            BeritaSeeder::class,
+            KontakSeeder::class,
         ]);
     }
 }

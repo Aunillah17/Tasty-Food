@@ -4,7 +4,7 @@
 <style>
     /* Styling Banner Atas (Header) - Senada dengan Berita & Tentang Kami */
     .news-detail-banner {
-        background: url('{{ asset('assets/images/Group 70.avif') }}') center/cover no-repeat;
+        background: url('{{ asset('assets/images/' . ($globalNavbar->banner_berita ?? 'Group 70.avif')) }}') center/cover no-repeat;
         height: 300px;
         position: relative;
         margin-top: -110px; /* Diangkat agar serasi di bawah navbar transparan */
