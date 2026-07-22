@@ -1,7 +1,5 @@
 <?php
-
 use Illuminate\Support\Facades\Route;
-
 // Import semua controller yang dibutuhkan
 use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\NavbarController;
@@ -28,16 +26,12 @@ Route::get('/berita/detail/{id}', [BeritaController::class, 'show']);
 Route::get('/galeri', [GaleriController::class, 'index']);
 Route::get('/kontak', [KontakController::class, 'index']);
 
-
 // ==========================================
 // Authentication Admin (Login & Logout)
 // ==========================================
 Route::get('/tasty-secret-admin/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/tasty-secret-admin/login', [AuthController::class, 'login']);
-
-// UBAH JADI GET BIAR COCOK DENGAN LINK MODAL KONFIRMASI
 Route::get('/tasty-secret-admin/logout', [AuthController::class, 'logout'])->name('logout');
-
 
 // ==========================================
 // Panel Admin (Diproteksi Wajib Login)
@@ -45,7 +39,9 @@ Route::get('/tasty-secret-admin/logout', [AuthController::class, 'logout'])->nam
 Route::prefix('tasty-secret-admin')->middleware('auth')->group(function () {
    
     // Dashboard Admin
-    Route::get('/', function () { return view('admin.dashboard'); });
+    Route::get('/', function () { 
+        return view('admin.dashboard'); 
+    })->name('admin.dashboard');
    
     // 1. Kelola Home
     Route::get('/home', [HomeController::class, 'editAdmin']);

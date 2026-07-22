@@ -14,7 +14,7 @@ class UserSeeder extends Seeder
             ['email' => 'admin@tastyfood.com'],
             [
                 'name' => 'Admin Tasty Food',
-                'password' => Hash::make('tastyadmin123'),
+                'password' => Hash::make('Tastyadmin123'),
             ]
         );
     }
