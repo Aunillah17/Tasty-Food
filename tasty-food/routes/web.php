@@ -10,6 +10,7 @@ use App\Http\Controllers\TentangController;
 use App\Http\Controllers\FooterController;
 use App\Http\Controllers\GaleriController;
 use App\Http\Controllers\KontakController;
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,23 +23,26 @@ use App\Http\Controllers\KontakController;
 // ==========================================
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/tentang', [TentangController::class, 'index']);
-
-// Halaman list berita depan menggunakan index() bawaan controller lu
 Route::get('/berita', [BeritaController::class, 'index']);
-// Halaman baca selengkapnya menggunakan show() bawaan controller lu
 Route::get('/berita/detail/{id}', [BeritaController::class, 'show']);
-
-// DINAMIS: Route publik galeri sekarang diarahkan ke controller
 Route::get('/galeri', [GaleriController::class, 'index']);
-
-// DINAMIS: Route publik kontak diarahkan ke KontakController
 Route::get('/kontak', [KontakController::class, 'index']);
 
 
 // ==========================================
-// Panel Admin (Tasty Secret Admin)
+// Authentication Admin (Login & Logout)
 // ==========================================
-Route::prefix('tasty-secret-admin')->group(function () {
+Route::get('/tasty-secret-admin/login', [AuthController::class, 'showLoginForm'])->name('login');
+Route::post('/tasty-secret-admin/login', [AuthController::class, 'login']);
+
+// UBAH JADI GET BIAR COCOK DENGAN LINK MODAL KONFIRMASI
+Route::get('/tasty-secret-admin/logout', [AuthController::class, 'logout'])->name('logout');
+
+
+// ==========================================
+// Panel Admin (Diproteksi Wajib Login)
+// ==========================================
+Route::prefix('tasty-secret-admin')->middleware('auth')->group(function () {
    
     // Dashboard Admin
     Route::get('/', function () { return view('admin.dashboard'); });
@@ -75,7 +79,7 @@ Route::prefix('tasty-secret-admin')->group(function () {
     Route::post('/galeri/update/{id}', [GaleriController::class, 'updateAdmin']);
     Route::get('/galeri/hapus/{id}', [GaleriController::class, 'destroyAdmin']);
 
-    // 7. Kelola Kontak (FITUR BARU)
+    // 7. Kelola Kontak
     Route::get('/kontak', [KontakController::class, 'editAdmin']);
     Route::post('/kontak/update', [KontakController::class, 'updateAdmin']);
 });

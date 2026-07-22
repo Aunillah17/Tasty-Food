@@ -119,7 +119,7 @@
             </button>
            
             <div class="collapse navbar-collapse" id="adminNavbar">
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 gap-1">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 gap-1 align-items-lg-center">
                     <li class="nav-item">
                         <a class="nav-link nav-link-admin {{ Request::is('tasty-secret-admin') ? 'active' : '' }}" href="/tasty-secret-admin">Dashboard</a>
                     </li>
@@ -142,8 +142,15 @@
                     <li class="nav-item">
                         <a class="nav-link nav-link-admin {{ Request::is('tasty-secret-admin/navbar*') ? 'active' : '' }}" href="/tasty-secret-admin/navbar">Navbar</a>
                     </li>
-                    <li class="nav-item ms-lg-3">
+                    <li class="nav-item ms-lg-2">
                         <a class="nav-link nav-link-admin text-warning" href="{{ url('/') }}" target="_blank" style="color: #fbbf24 !important;">Lihat Web ↗</a>
+                    </li>
+
+                    <!-- TOMBOL LOGOUT (MEMBUKA MODAL KONFIRMASI) -->
+                    <li class="nav-item ms-lg-2">
+                        <button type="button" class="btn btn-sm btn-outline-danger text-uppercase fw-bold rounded-0 px-3 py-2" data-bs-toggle="modal" data-bs-target="#logoutModal">
+                            Logout
+                        </button>
                     </li>
                 </ul>
             </div>
@@ -154,6 +161,26 @@
     <main class="py-2">
         @yield('content')
     </main>
+
+    <!-- MODAL KONFIRMASI LOGOUT -->
+    <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-2 border-dark rounded-0 shadow">
+                <div class="modal-header bg-dark text-white rounded-0">
+                    <h5 class="modal-title fw-bold text-uppercase fs-6" id="logoutModalLabel">Konfirmasi Logout</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center py-4">
+                    <p class="fs-5 fw-semibold mb-1">Apakah kamu yakin ingin keluar?</p>
+                    <p class="text-muted small mb-0">Kamu harus melakukan login kembali untuk mengakses panel admin.</p>
+                </div>
+                <div class="modal-footer justify-content-center border-0 pb-4">
+                    <button type="button" class="btn btn-outline-dark rounded-0 px-4 fw-bold text-uppercase" data-bs-dismiss="modal">Batal</button>
+                    <a href="{{ route('logout') }}" class="btn btn-danger rounded-0 px-4 fw-bold text-uppercase">Ya, Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Bootstrap 5 JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>

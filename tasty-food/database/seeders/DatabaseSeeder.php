@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
             TentangSeeder::class,
             BeritaSeeder::class,
             KontakSeeder::class,
+            UserSeeder::class,
         ]);
     }
 }
