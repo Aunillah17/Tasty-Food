@@ -83,20 +83,27 @@
 <!-- 2. FORMULIR HUBUNGI KAMI -->
 <section class="py-5">
     <div class="container">
-        <h3 class="text-uppercase fw-bold text-dark mb-5" style="letter-spacing: 0.5px;">Kontak Kami</h3>
+        <h3 class="text-uppercase fw-bold text-dark mb-4" style="letter-spacing: 0.5px;">Kontak Kami</h3>
        
-        <form action="#" method="POST">
+        <!-- Alert Sukses Kirim Pesan -->
+        @if(session('sukses_pesan'))
+            <div class="alert alert-success rounded-0 border-0 shadow-sm p-3 mb-4" role="alert">
+                <div class="fw-bold">✅ {{ session('sukses_pesan') }}</div>
+            </div>
+        @endif
+
+        <form action="/kontak/kirim-pesan" method="POST">
             @csrf
             <div class="row g-4 mb-4">
                 <div class="col-lg-6">
                     <div class="d-flex flex-column gap-4">
-                        <input type="text" name="subject" class="form-control form-custom-input" placeholder="Subject" required>
-                        <input type="text" name="name" class="form-control form-custom-input" placeholder="Name" required>
-                        <input type="email" name="email" class="form-control form-custom-input" placeholder="Email" required>
+                        <input type="text" name="subject" class="form-control form-custom-input" placeholder="Subject" value="{{ old('subject') }}" required>
+                        <input type="text" name="name" class="form-control form-custom-input" placeholder="Name" value="{{ old('name') }}" required>
+                        <input type="email" name="email" class="form-control form-custom-input" placeholder="Email" value="{{ old('email') }}" required>
                     </div>
                 </div>
                 <div class="col-lg-6">
-                    <textarea name="message" class="form-control form-custom-input form-custom-textarea" placeholder="Message" required></textarea>
+                    <textarea name="message" class="form-control form-custom-input form-custom-textarea" placeholder="Message" required>{{ old('message') }}</textarea>
                 </div>
             </div>
            

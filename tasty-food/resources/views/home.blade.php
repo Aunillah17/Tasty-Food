@@ -127,7 +127,7 @@
 </section>
 
 <!-- ==========================================================================
-   2. TENTANG KAMI SECTION & 4 CARD MAKANAN
+   2. TENTANG KAMI SECTION & 4 CARD Makanan
    ========================================================================== -->
 <section class="py-5 my-5 text-center">
     <div class="container mb-5">
@@ -184,20 +184,19 @@
 </section>
 
 <!-- ==========================================================================
-   3. BERITA KAMI SECTION (Dinamis mengambil data dari AppServiceProvider/Database)
+   3. BERITA KAMI SECTION
    ========================================================================== -->
 <section class="py-5 my-5">
     <div class="container">
         <h2 class="text-uppercase fw-bold text-dark text-center mb-5">Berita Kami</h2>
        
-        @php 
-            $beritasHome = \App\Models\Berita::latest()->take(5)->get(); 
+        @php
+            $beritasHome = \App\Models\Berita::latest()->take(5)->get();
             $beritaUtamaHome = $beritasHome->first();
         @endphp
-
         @if($beritasHome->count() > 0)
         <div class="row g-4">
-            <!-- Berita Utama (Kiri Gede) -->
+            <!-- Berita Utama -->
             <div class="col-lg-6">
                 <div class="card h-100 border-0 shadow-sm" style="border-radius: 12px; overflow: hidden;">
                     <img src="{{ asset('assets/images/' . $beritaUtamaHome->gambar) }}" class="card-img-top" alt="Berita Utama" style="height: 340px; object-fit: cover;">
@@ -214,7 +213,7 @@
                 </div>
             </div>
            
-            <!-- Berita Sampingan Grid (Kanan - Sisa Items) -->
+            <!-- Berita Sampingan Grid -->
             <div class="col-lg-6">
                 <div class="row g-4">
                     @foreach($beritasHome->skip(1) as $itemSide)
@@ -251,37 +250,31 @@
         <h2 class="text-uppercase fw-bold text-dark mb-5">Galeri Kami</h2>
        
         <div class="row g-4 mb-5">
-            <!-- Foto 1 -->
             <div class="col-lg-4 col-md-6">
                 <div class="gallery-img-wrapper">
                     <img src="{{ asset('assets/images/brooke-lark-oaz0raysASk-unsplash.avif') }}" alt="Galeri 1">
                 </div>
             </div>
-            <!-- Foto 2 -->
             <div class="col-lg-4 col-md-6">
                 <div class="gallery-img-wrapper">
                     <img src="{{ asset('assets/images/ella-olsson-mmnKI8kMxpc-unsplash.avif') }}" alt="Galeri 2">
                 </div>
             </div>
-            <!-- Foto 3 -->
             <div class="col-lg-4 col-md-6">
                 <div class="gallery-img-wrapper">
                     <img src="{{ asset('assets/images/eiliv-aceron-ZuIDLSz3XLg-unsplash.avif') }}" alt="Galeri 3">
                 </div>
             </div>
-            <!-- Foto 4 -->
             <div class="col-lg-4 col-md-6">
                 <div class="gallery-img-wrapper">
                     <img src="{{ asset('assets/images/jonathan-borba-Gkc_xM3VY34-unsplash.avif') }}" alt="Galeri 4">
                 </div>
             </div>
-            <!-- Foto 5 -->
             <div class="col-lg-4 col-md-6">
                 <div class="gallery-img-wrapper">
                     <img src="{{ asset('assets/images/mariana-medvedeva-iNwCO9ycBlc-unsplash.avif') }}" alt="Galeri 5">
                 </div>
             </div>
-            <!-- Foto 6 -->
             <div class="col-lg-4 col-md-6">
                 <div class="gallery-img-wrapper">
                     <img src="{{ asset('assets/images/monika-grabkowska-P1aohbiT-EY-unsplash.avif') }}" alt="Galeri 6">
@@ -289,7 +282,6 @@
             </div>
         </div>
        
-        <!-- Tombol Lihat Lebih Banyak -->
         <a href="{{ url('/galeri') }}" class="btn btn-dark-custom px-5">Lihat Lebih Banyak</a>
     </div>
 </section>

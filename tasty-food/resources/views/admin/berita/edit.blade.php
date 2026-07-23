@@ -1,7 +1,6 @@
 @extends('layouts.admin')
 @section('title', 'Edit Berita')
 @section('content')
-
 <div class="container my-4 mb-5">
     <div class="row mb-4">
         <div class="col-12">
@@ -9,8 +8,8 @@
             <p class="text-muted small">Ubah atau perbaiki informasi berita kuliner Tasty Food.</p>
         </div>
     </div>
-
-    <form action="/tasty-secret-admin/berita/update/{{ $berita->id }}" method="POST" class="card card-branded p-4">
+    <!-- Tambahan enctype agar form bisa memproses upload file gambar -->
+    <form action="/tasty-secret-admin/berita/update/{{ $berita->id }}" method="POST" enctype="multipart/form-data" class="card card-branded p-4">
         @csrf
         <div class="row g-3">
             <div class="col-md-8">
@@ -18,8 +17,14 @@
                 <input type="text" name="judul" class="form-control form-control-custom" value="{{ $berita->judul }}" required>
             </div>
             <div class="col-md-4">
-                <label class="form-label fw-bold text-dark text-uppercase small">Nama File Gambar</label>
-                <input type="text" name="gambar" class="form-control form-control-custom" value="{{ $berita->gambar }}" required>
+                <label class="form-label fw-bold text-dark text-uppercase small">Gambar Berita</label>
+                @if($berita->gambar)
+                    <div class="mb-2">
+                        <img src="{{ asset('assets/images/' . $berita->gambar) }}" alt="Preview Gambar" class="img-thumbnail" style="height: 80px; object-fit: cover;">
+                    </div>
+                @endif
+                <input type="file" name="gambar" class="form-control form-control-custom">
+                <small class="text-muted" style="font-size: 11px;">Biarkan kosong jika tidak ingin mengubah gambar.</small>
             </div>
             <div class="col-md-12">
                 <label class="form-label fw-bold text-dark text-uppercase small">Deskripsi Pendek (Preview Halaman Depan)</label>
@@ -36,5 +41,4 @@
         </div>
     </form>
 </div>
-
 @endsection

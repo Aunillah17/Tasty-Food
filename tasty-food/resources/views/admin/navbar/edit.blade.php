@@ -5,7 +5,7 @@
     <div class="row mb-4">
         <div class="col-12">
             <h1 class="fw-bold text-uppercase text-dark mb-1">Kelola Navbar & Banner Header</h1>
-            <p class="text-muted small">Ubah nama menu navigasi utama serta gambar banner/header untuk halaman publik.</p>
+            <p class="text-muted small">Ubah nama menu navigasi utama serta upload file gambar banner/header untuk halaman publik.</p>
         </div>
     </div>
 
@@ -16,8 +16,19 @@
         </div>
     @endif
 
-    <!-- Form Edit Teks Navbar & Banner -->
-    <form action="/tasty-secret-admin/navbar/update" method="POST" class="card card-branded p-4 shadow-sm border-0">
+    <!-- Alert Error Validasi jika ada -->
+    @if ($errors->any())
+        <div class="alert alert-danger rounded-0 border-0 mb-4">
+            <ul class="mb-0">
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
+    <!-- Form Edit Teks Navbar & Upload Banner (Wajib enctype multipart) -->
+    <form action="/tasty-secret-admin/navbar/update" method="POST" enctype="multipart/form-data" class="card card-branded p-4 shadow-sm border-0">
         @csrf
         
         <!-- SEKTOR 1: TEKS MENU NAVBAR -->
@@ -45,26 +56,57 @@
             </div>
         </div>
 
-        <!-- SEKTOR 2: GAMBAR BANNER HEADER HALAMAN PUBLIK -->
-        <h5 class="fw-bold text-uppercase text-dark mb-3 border-bottom pb-2">2. Gambar Banner Header Halaman</h5>
-        <p class="text-muted small mb-4">Pastikan file gambar sudah berada di folder <code>public/assets/images/</code>.</p>
+        <!-- SEKTOR 2: UPLOAD GAMBAR BANNER HEADER HALAMAN PUBLIK -->
+        <h5 class="fw-bold text-uppercase text-dark mb-3 border-bottom pb-2">2. Upload Banner Header Halaman</h5>
+        <p class="text-muted small mb-4">Pilih file gambar baru untuk mengubah banner halaman publik (Format: JPG, PNG, JPEG, AVIF, WEBP).</p>
         
         <div class="row g-4 mb-4">
+            <!-- Banner Tentang -->
             <div class="col-md-6">
                 <label class="form-label fw-bold text-dark text-uppercase small">Banner Halaman Tentang</label>
-                <input type="text" name="banner_tentang" class="form-control form-control-custom rounded-0 shadow-none" value="{{ $navbar->banner_tentang ?? 'Group 70.avif' }}" required>
+                @if(isset($navbar->banner_tentang))
+                    <div class="mb-2">
+                        <img src="{{ asset('assets/images/' . $navbar->banner_tentang) }}" alt="Preview Banner Tentang" class="img-thumbnail" style="height: 90px; width: 100%; object-fit: cover;">
+                    </div>
+                @endif
+                <input type="file" name="banner_tentang" class="form-control form-control-custom rounded-0 shadow-none">
+                <small class="text-muted" style="font-size: 11px;">Biarkan kosong jika tidak ingin mengubah.</small>
             </div>
+
+            <!-- Banner Berita -->
             <div class="col-md-6">
                 <label class="form-label fw-bold text-dark text-uppercase small">Banner Halaman Berita</label>
-                <input type="text" name="banner_berita" class="form-control form-control-custom rounded-0 shadow-none" value="{{ $navbar->banner_berita ?? 'Group 70.avif' }}" required>
+                @if(isset($navbar->banner_berita))
+                    <div class="mb-2">
+                        <img src="{{ asset('assets/images/' . $navbar->banner_berita) }}" alt="Preview Banner Berita" class="img-thumbnail" style="height: 90px; width: 100%; object-fit: cover;">
+                    </div>
+                @endif
+                <input type="file" name="banner_berita" class="form-control form-control-custom rounded-0 shadow-none">
+                <small class="text-muted" style="font-size: 11px;">Biarkan kosong jika tidak ingin mengubah.</small>
             </div>
+
+            <!-- Banner Galeri -->
             <div class="col-md-6">
                 <label class="form-label fw-bold text-dark text-uppercase small">Banner Halaman Galeri</label>
-                <input type="text" name="banner_galeri" class="form-control form-control-custom rounded-0 shadow-none" value="{{ $navbar->banner_galeri ?? 'Group 70.avif' }}" required>
+                @if(isset($navbar->banner_galeri))
+                    <div class="mb-2">
+                        <img src="{{ asset('assets/images/' . $navbar->banner_galeri) }}" alt="Preview Banner Galeri" class="img-thumbnail" style="height: 90px; width: 100%; object-fit: cover;">
+                    </div>
+                @endif
+                <input type="file" name="banner_galeri" class="form-control form-control-custom rounded-0 shadow-none">
+                <small class="text-muted" style="font-size: 11px;">Biarkan kosong jika tidak ingin mengubah.</small>
             </div>
+
+            <!-- Banner Kontak -->
             <div class="col-md-6">
                 <label class="form-label fw-bold text-dark text-uppercase small">Banner Halaman Kontak</label>
-                <input type="text" name="banner_kontak" class="form-control form-control-custom rounded-0 shadow-none" value="{{ $navbar->banner_kontak ?? 'Group 70.avif' }}" required>
+                @if(isset($navbar->banner_kontak))
+                    <div class="mb-2">
+                        <img src="{{ asset('assets/images/' . $navbar->banner_kontak) }}" alt="Preview Banner Kontak" class="img-thumbnail" style="height: 90px; width: 100%; object-fit: cover;">
+                    </div>
+                @endif
+                <input type="file" name="banner_kontak" class="form-control form-control-custom rounded-0 shadow-none">
+                <small class="text-muted" style="font-size: 11px;">Biarkan kosong jika tidak ingin mengubah.</small>
             </div>
         </div>
 

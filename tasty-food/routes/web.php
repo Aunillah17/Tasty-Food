@@ -1,4 +1,5 @@
 <?php
+
 use Illuminate\Support\Facades\Route;
 // Import semua controller yang dibutuhkan
 use App\Http\Controllers\BeritaController;
@@ -25,6 +26,7 @@ Route::get('/berita', [BeritaController::class, 'index']);
 Route::get('/berita/detail/{id}', [BeritaController::class, 'show']);
 Route::get('/galeri', [GaleriController::class, 'index']);
 Route::get('/kontak', [KontakController::class, 'index']);
+Route::post('/kontak/kirim-pesan', [KontakController::class, 'storePesan']);
 
 // ==========================================
 // Authentication Admin (Login & Logout)
@@ -75,7 +77,13 @@ Route::prefix('tasty-secret-admin')->middleware('auth')->group(function () {
     Route::post('/galeri/update/{id}', [GaleriController::class, 'updateAdmin']);
     Route::get('/galeri/hapus/{id}', [GaleriController::class, 'destroyAdmin']);
 
-    // 7. Kelola Kontak
+    // 7. Kelola Kontak & Inbox Pesan Masuk
     Route::get('/kontak', [KontakController::class, 'editAdmin']);
     Route::post('/kontak/update', [KontakController::class, 'updateAdmin']);
+    
+    // Rute Inbox Pesan, Detail, Balas, & Hapus Pesan Admin
+    Route::get('/kontak/inbox', [KontakController::class, 'inboxAdmin']);
+    Route::get('/kontak/inbox/detail/{id}', [KontakController::class, 'showInboxAdmin']);
+    Route::post('/kontak/inbox/balas/{id}', [KontakController::class, 'replyInboxAdmin']);
+    Route::get('/kontak/inbox/hapus/{id}', [KontakController::class, 'destroyInboxAdmin']);
 });

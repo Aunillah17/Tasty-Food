@@ -3,48 +3,49 @@
 @section('content')
 <div class="container my-4 mb-5">
     <div class="row mb-4">
-        <div class="col-12">
+        <div class="col-md-6">
             <h1 class="fw-bold text-uppercase text-dark mb-1">Tambah Foto Galeri</h1>
-            <p class="text-muted small">Tentukan lokasi penempatan foto baik di slider atas atau grid 4x3 bawah.</p>
+            <p class="text-muted small mb-0">Unggah foto baru untuk ditampilkan di halaman publik.</p>
         </div>
     </div>
 
+    @if ($errors->any())
+        <div class="alert alert-danger rounded-0 border-0 shadow-sm p-3 mb-4">
+            <ul class="mb-0">
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
     <div class="card p-4 border-0 shadow-sm">
-        <form action="/tasty-secret-admin/galeri/simpan" method="POST">
+        <form action="/tasty-secret-admin/galeri/simpan" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="mb-3">
-                <label for="gambar" class="form-label fw-bold small text-uppercase">Nama File Gambar</label>
-                <input type="text" name="gambar" id="gambar" class="form-control rounded-0 @error('gambar') is-invalid @enderror" placeholder="Contoh: g-1.avif" value="{{ old('gambar') }}">
-                <div class="form-text small text-muted">Pastikan file gambar sudah lu taruh di folder <code>public/assets/images/</code>.</div>
-                @error('gambar') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                <label for="judul" class="form-label fw-bold">Judul Foto</label>
+                <input type="text" class="form-control rounded-0" id="judul" name="judul" value="{{ old('judul') }}" required>
             </div>
 
             <div class="mb-3">
-                <label for="judul" class="form-label fw-bold small text-uppercase">Judul / Caption Foto</label>
-                <input type="text" name="judul" id="judul" class="form-control rounded-0 @error('judul') is-invalid @enderror" placeholder="Masukkan judul foto" value="{{ old('judul') }}">
-                @error('judul') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                <label for="gambar" class="form-label fw-bold">File Gambar (Foto)</label>
+                <input type="file" class="form-control rounded-0" id="gambar" name="gambar" required>
+                <small class="text-muted">Format yang diizinkan: JPEG, PNG, JPG, AVIF, WEBP (Maks. 2MB)</small>
             </div>
 
-            <!-- Bagian Pemisahan Penempatan -->
-            <div class="mb-3 p-3 bg-light border border-dashed">
-                <label class="form-label fw-bold small text-uppercase mb-2 d-block">Lokasi Penempatan Gambar</label>
-                <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" name="is_carousel" id="is_carousel" value="1">
-                    <label class="form-check-label text-dark fw-bold" for="is_carousel">
-                        🎠 Jadikan Slider / Carousel Atas
-                    </label>
-                </div>
-                <div class="form-text small text-muted">Centang jika ingin memunculkannya di slider utama atas. Biarkan kosong jika ingin dimasukkan ke Grid Foto Utama bawah.</div>
+            <div class="mb-3">
+                <label for="deskripsi" class="form-label fw-bold">Keterangan (Opsional)</label>
+                <textarea class="form-control rounded-0" id="deskripsi" name="deskripsi" rows="3">{{ old('deskripsi') }}</textarea>
             </div>
 
-            <div class="mb-4">
-                <label for="deskripsi" class="form-label fw-bold small text-uppercase">Deskripsi (Opsional)</label>
-                <textarea name="deskripsi" id="deskripsi" rows="4" class="form-control rounded-0" placeholder="Keterangan singkat tambahan">{{ old('deskripsi') }}</textarea>
+            <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" id="is_carousel" name="is_carousel" value="1" {{ old('is_carousel') ? 'checked' : '' }}>
+                <label class="form-check-label fw-bold" for="is_carousel">Jadikan Carousel / Slider Atas (Jika tidak dicentang akan masuk ke Grid Utama)</label>
             </div>
 
-            <div class="d-flex gap-2">
-                <button type="submit" class="btn btn-dark rounded-0 px-4 text-uppercase fw-bold fs-7">💾 Simpan</button>
-                <a href="/tasty-secret-admin/galeri" class="btn btn-outline-secondary rounded-0 px-4 text-uppercase fw-bold fs-7">Batal</a>
+            <div class="mt-4">
+                <button type="submit" class="btn btn-dark rounded-0 px-4 text-uppercase fw-bold">Simpan Foto</button>
+                <a href="/tasty-secret-admin/galeri" class="btn btn-secondary rounded-0 px-4 text-uppercase fw-bold ms-2">Kembali</a>
             </div>
         </form>
     </div>

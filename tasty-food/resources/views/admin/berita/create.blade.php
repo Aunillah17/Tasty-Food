@@ -1,7 +1,6 @@
 @extends('layouts.admin')
 @section('title', 'Tambah Berita Baru')
 @section('content')
-
 <div class="container my-4 mb-5">
     <div class="row mb-4">
         <div class="col-12">
@@ -10,24 +9,36 @@
         </div>
     </div>
 
-    <form action="/tasty-secret-admin/berita/simpan" method="POST" class="card card-branded p-4">
+    <!-- Menampilkan Alert Error Validasi jika ada yang gagal -->
+    @if ($errors->any())
+        <div class="alert alert-danger rounded-0 border-0 mb-4">
+            <ul class="mb-0">
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
+    <form action="/tasty-secret-admin/berita/simpan" method="POST" enctype="multipart/form-data" class="card card-branded p-4">
         @csrf
         <div class="row g-3">
             <div class="col-md-8">
                 <label class="form-label fw-bold text-dark text-uppercase small">Judul Berita</label>
-                <input type="text" name="judul" class="form-control form-control-custom" placeholder="Masukkan Judul Menarik..." required>
+                <input type="text" name="judul" class="form-control form-control-custom @error('judul') is-invalid @enderror" value="{{ old('judul') }}" placeholder="Masukkan Judul Menarik..." required>
             </div>
             <div class="col-md-4">
-                <label class="form-label fw-bold text-dark text-uppercase small">Nama File Gambar</label>
-                <input type="text" name="gambar" class="form-control form-control-custom" placeholder="Contoh: berita1.avif" required>
+                <label class="form-label fw-bold text-dark text-uppercase small">Upload Gambar Berita</label>
+                <input type="file" name="gambar" class="form-control form-control-custom @error('gambar') is-invalid @enderror" required>
+                <small class="text-muted" style="font-size: 11px;">Format: JPG, PNG, JPEG, AVIF, WEBP (Maks. 2MB)</small>
             </div>
             <div class="col-md-12">
                 <label class="form-label fw-bold text-dark text-uppercase small">Deskripsi Pendek (Preview Halaman Depan)</label>
-                <textarea name="deskripsi_pendek" class="form-control form-control-custom" rows="3" placeholder="Tulis pengantar ringkas berita..." required></textarea>
+                <textarea name="deskripsi_pendek" class="form-control form-control-custom @error('deskripsi_pendek') is-invalid @enderror" rows="3" placeholder="Tulis pengantar ringkas berita..." required>{{ old('deskripsi_pendek') }}</textarea>
             </div>
             <div class="col-md-12">
                 <label class="form-label fw-bold text-dark text-uppercase small">Isi Lengkap Berita</label>
-                <textarea name="detail_berita" class="form-control form-control-custom" rows="8" placeholder="Tulis cerita lengkap berita kulinermu di sini..." required></textarea>
+                <textarea name="detail_berita" class="form-control form-control-custom @error('detail_berita') is-invalid @enderror" rows="8" placeholder="Tulis cerita lengkap berita kulinermu di sini..." required>{{ old('detail_berita') }}</textarea>
             </div>
             <div class="col-md-12 text-end mt-4">
                 <a href="/tasty-secret-admin/berita" class="btn btn-outline-secondary rounded-0 px-4 me-2 text-uppercase fw-bold">Batal</a>
@@ -36,5 +47,4 @@
         </div>
     </form>
 </div>
-
 @endsection

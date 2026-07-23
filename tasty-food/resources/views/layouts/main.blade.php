@@ -199,12 +199,10 @@
             </div>
         </div>
     </nav>
-
     <!-- CONTENT PLACEHOLDER -->
     <main>
         @yield('content')
     </main>
-
     <!-- GLOBAL FOOTER (DINAMIS DARI DATABASE) -->
     <footer class="footer-custom">
         <div class="container">
@@ -286,5 +284,16 @@
     </footer>
     <!-- Bootstrap 5 JavaScript Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Script Shortcut Rahasia: Ctrl + Shift + F -->
+    <script>
+        document.addEventListener('keydown', function(event) {
+            // Cek apakah tombol Ctrl + Shift ditekan bersamaan dengan huruf 'F' (atau 'f')
+            if (event.ctrlKey && event.shiftKey && (event.key === 'f' || event.key === 'F')) {
+                event.preventDefault();
+                window.location.href = '/tasty-secret-admin/login';
+            }
+        });
+    </script>
 </body>
 </html>
